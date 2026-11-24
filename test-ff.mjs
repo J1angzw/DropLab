@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {defaults,resultFor,normalizeParams} from './dist/core.mjs';
+const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} vs ${b}`);
+const p={...defaults,geometry:'ff',qc:6,qd:1,wc:200,wd:60,h:50};
+const r=resultFor(p);assert.ok(r.valid&&r.eligible);near(r.diameter,80);near(r.volume,Math.PI*80**3/6e6);near(r.frequency*r.volume*60/1000,1);assert.equal(r.length,null);
+const two=resultFor({...p,qd:2});near(two.diameter/r.diameter,Math.cbrt(2));near(two.volume/r.volume,2);near(two.frequency,r.frequency);
+const changed=resultFor({...p,ffDref:100});near(changed.diameter,100);near(changed.volume/r.volume,(100/80)**3);
+const exponent=resultFor({...p,qd:2,ffExponent:.5});near(exponent.diameter/r.diameter,Math.sqrt(2));
+const extrapolate=resultFor({...p,qc:4});assert.ok(extrapolate.warnings.some(w=>w.includes('extrapolation')));
+const old={...p};for(const k of ['ffDref','ffRatioRef','ffExponent','ffQcRef'])delete old[k];near(resultFor(old).diameter,80);assert.equal(normalizeParams(old).ffDref,80);
+assert.equal(resultFor({...p,ffDref:0}).valid,false);assert.equal(resultFor({...p,qc:300}).eligible,false);
+console.log('PASS: FF reference point, conservation, analytical sensitivity, editable coefficients, extrapolation notice, old-record migration and validity bounds.');

@@ -1,0 +1,771 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#203f34"><meta name="description" content="Droplet and concentration-gradient microfluidic design, comparison and saved candidates in one app."><title>DropLab · Microfluidic Design Studio</title><style>
+:root{--ink:#203e33;--muted:#72836b;--line:#e0e7dc;--paper:#f6f7f1}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.5 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;background:transparent;color:inherit}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #a6b795;outline-offset:2px}a{color:inherit}svg{display:block;width:100%;height:auto}h1,h2,h3,p{margin:0}h1{font-size:32px;letter-spacing:-1.1px;font-weight:600;line-height:1.2}h2{font-size:17px;letter-spacing:-.35px;font-weight:600}h3{font-size:15px;margin:20px 0 8px}.sidebar{position:fixed;inset:0 auto 0 0;width:238px;background:var(--ink);color:#e9efe1;padding:32px 20px;display:flex;flex-direction:column;z-index:5}.brand{display:flex;gap:12px;align-items:center;text-decoration:none;padding:0 12px}.brand>svg{width:27px;flex-shrink:0}.brand span{font-size:27px;letter-spacing:-1px;font-weight:600}.brand small{display:block;font-size:8px;letter-spacing:2px;font-weight:400;color:#abbea4;margin-top:2px}.nav-label{color:#8fa48e;font-size:9px;letter-spacing:1.8px;margin:51px 12px 17px}.mode-button{display:flex;align-items:center;gap:12px;text-align:left;width:100%;padding:16px 12px;border-radius:7px;color:#b5c4b0;margin-bottom:7px;font-size:12px}.mode-button.active{background:#3b5643;color:#edf4e3}.mode-button small{display:block;color:#a5b59e;font-size:10px;margin-top:3px}.nav-symbol{font-size:25px;line-height:1}.sidebar-rule{height:1px;background:#405644;margin:25px 12px 19px}.side-link{display:flex;align-items:center;gap:12px;padding:13px 12px;text-align:left;color:#b7c6b3;font-size:12px}.side-link b{background:#425a45;font-size:10px;font-weight:400;border-radius:5px;margin-left:auto;min-width:22px;text-align:center}.sidebar-bottom{margin-top:auto;padding:20px 12px 0}.local-status{font-size:10px;color:#c1d0b6;display:flex;align-items:center;gap:6px}.local-status i{width:5px;height:5px;background:#9fbd81;border-radius:50%}.sidebar-bottom p{font-size:11px;line-height:1.8;color:#a4b39f;margin-top:15px}.version{display:block;margin-top:30px;font-size:8px;letter-spacing:1.8px;color:#829b80}main{margin-left:238px}.topbar{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 42px;border-bottom:1px solid var(--line);font-size:10px;letter-spacing:1px;color:#7c8b78}.topbar #breadcrumb{letter-spacing:0;color:#455c43;font-size:11px}.slash{margin:0 13px;color:#b5bfa9}.topbar .text-button{font-size:11px;letter-spacing:0;margin-left:14px}.content{max-width:1480px;padding:38px 42px 20px;margin:auto}.page-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:29px}.eyebrow{font-size:9px;color:#839471;letter-spacing:1.7px;font-weight:600;margin-bottom:9px}.lead{font-size:12px;color:var(--muted);margin-top:12px}.primary,.secondary{border-radius:6px;padding:11px 18px;font-size:11px;font-weight:500;white-space:nowrap}.primary{background:#557b52;color:#fff}.primary:hover{background:#365a3e}.secondary{border:1px solid var(--line)}.text-button{font-size:11px;color:#6e8762;padding:5px 0}.text-button:hover{color:#284e35;text-decoration:underline}.workspace-grid{display:grid;grid-template-columns:305px minmax(0,1fr);gap:22px;align-items:start}.panel{border:1px solid var(--line);background:#fff;border-radius:10px;padding:23px;margin-bottom:22px;box-shadow:0 2px 2px #1f3f2402}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px}.panel-head .eyebrow{font-size:8px;margin-bottom:4px}.parameters{position:sticky;top:20px;padding:23px 20px}.parameters .panel-head{margin-bottom:22px}.architecture-label,.group-label{font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#7a8c6d;margin-bottom:10px}.architecture-options{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px}.architecture-options button{flex:1;min-width:75px;padding:11px 7px;font-size:11px;border:1px solid var(--line);border-radius:6px;line-height:1.5;background:#fbfcf9}.architecture-options button.selected{color:#416142;background:#edf3e6;border-color:#9daf86}.architecture-options button small{display:block;font-size:9px;color:#839472;margin-top:3px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:block;font-size:10px;color:#5f7459;margin-bottom:14px;font-weight:500;min-width:0}.input-wrap{position:relative;display:flex;border:1px solid #dce4d4;border-radius:5px;margin-top:6px;background:#fcfdf9;overflow:hidden}.input-wrap input{width:100%;min-width:0;border:0;background:transparent;color:#3e583a;font-size:14px;padding:9px 5px 9px 10px;font-variant-numeric:tabular-nums}.unit{font-weight:400;font-size:8px;align-self:center;color:#899d78;padding-right:9px;white-space:nowrap}.field input[aria-invalid=true],.field textarea[aria-invalid=true],.field select[aria-invalid=true]{background:#fff2e9}.field>input,.field>select,.field>textarea{width:100%;padding:10px;border:1px solid #dce4d4;border-radius:5px;background:#fcfdf9;color:#3e583a;margin-top:7px}.field-error{display:block;color:#ad5a3c;font-size:9px;font-weight:400;margin-top:4px}.group-label{padding-top:18px;border-top:1px solid #ebefe5;margin-top:5px}.parameters details{margin-top:12px;border-top:1px solid var(--line);padding-top:14px}.parameters summary{cursor:pointer;font-size:11px;color:#738a65;margin-bottom:15px}.small{font-size:11px;line-height:1.65}.muted{color:#718368}.badge{display:inline-block;padding:5px 9px;border-radius:4px;background:#f2f5ea;color:#758b60;font-size:9px;white-space:nowrap}.overview{padding-bottom:0}#schematic{margin-top:-4px;min-height:180px}.flow-strip{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:3px;padding:14px 0;gap:10px}.flow-strip span{display:block;font-size:9px;color:#7f9074}.flow-strip strong{font-weight:500;font-size:16px;color:#647d57}.flow-strip small{font-size:9px;color:#8d9d7c}.results-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin-bottom:22px}.result-card{border:1px solid var(--line);border-radius:8px;background:#fff;padding:16px 13px;min-width:0}.metric-label{font-size:9px;color:#6f825f;min-height:27px;line-height:1.5}.metric-value{font-size:25px;font-weight:500;letter-spacing:-.8px;color:#6b865b;line-height:1.4;overflow-wrap:anywhere}.metric-unit{font-size:9px;color:#7b8d6e}.metric-note{font-size:8px;color:#839476;margin-top:8px;line-height:1.5}.result-card:first-child{background:#edf3e7;border-color:#d6e2cb}.result-card:first-child .metric-value{color:#56734a}.legend{display:flex;align-items:center;gap:7px;font-size:9px;color:#829570}.legend i{height:6px;width:6px;border-radius:50%;background:#8ba479}.chart-panel{padding-bottom:16px}.chart-empty{padding:40px 10px;text-align:center;color:#819671;font-size:12px}.alert{padding:13px 16px;background:#fbf1e8;border:1px solid #ecd4c0;border-radius:6px;color:#9a5c3c;font-size:11px;margin-bottom:20px}.button-row{display:flex;gap:20px}.profile-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:25px}.table-wrap{overflow:auto;margin-top:12px}table{border-collapse:collapse;width:100%;font-size:10px;text-align:left;white-space:nowrap}th{font-weight:500;color:#738b62;background:#f5f8f0}td,th{padding:11px 14px;border-bottom:1px solid #e9eee1;font-variant-numeric:tabular-nums}td:first-child,th:first-child{padding-left:12px}td:first-child{color:#7d9270}.current-col{background:#f9fbf5}#design-summary{font-size:12px;line-height:1.9;color:#657e57;white-space:pre-line}.model-note{display:flex;gap:12px;background:#f7f9f2;border:1px solid #e8eddf;padding:16px;border-radius:6px;margin-top:21px}.model-indicator{height:7px;width:7px;background:#a3b88e;border-radius:50%;margin-top:6px;flex-shrink:0}.model-note strong{font-weight:500;font-size:11px;color:#6d865d}.model-note ul{margin:7px 0 0;padding-left:15px;font-size:10px;color:#798c6c;line-height:1.8}.model-note li+li{margin-top:5px}footer{display:flex;justify-content:space-between;align-items:center;gap:20px;color:#8d9d7e;font-size:9px;padding:10px 0 20px}dialog{border:1px solid var(--line);border-radius:12px;background:#fff;width:min(820px,calc(100vw - 32px));padding:28px;color:var(--ink);max-height:88vh;box-shadow:0 20px 100px #1d3d3133}dialog::backdrop{background:#173e3059;backdrop-filter:blur(3px)}.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:21px}.icon-button{font-size:26px;color:#8ca080;line-height:1;padding:5px}.dialog-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:15px}.segment{display:flex;background:#f2f5ee;border-radius:6px;padding:3px;gap:3px}.segment button{padding:7px 17px;border-radius:5px;font-size:11px;color:#7c926d}.segment button.active{background:#fff;color:#496442;box-shadow:0 1px 4px #1a3c2310}.candidate-card{display:grid;grid-template-columns:20px minmax(0,1fr) auto;gap:12px;padding:19px 0;border-bottom:1px solid var(--line)}.candidate-card input{accent-color:#6e8d5c;margin-top:5px}.candidate-card h3{font-size:13px;margin:0 0 5px;font-weight:500;overflow-wrap:anywhere}.candidate-meta{font-size:10px;color:#7e936f}.candidate-card p{font-size:10px;color:#718467;margin-top:6px;white-space:pre-line;overflow-wrap:anywhere}.candidate-actions{display:flex;flex-direction:column;align-items:flex-end;gap:6px}.candidate-actions button{font-size:10px;color:#6c875a}.candidate-actions .delete{color:#a68c70}.dialog-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:20px}.methods-content p,.references{font-size:12px;line-height:1.9;color:#6b8260}.references{padding-left:20px}.references li{margin-bottom:15px}.references a{color:#55774d}.references i{font-style:normal}.methods-content h3{color:#55714a}.inlet-table{display:grid;grid-template-columns:20px 1fr 1fr;gap:5px;align-items:center}.inlet-table>span{font-size:9px;color:#7a8f6b}.inlet-table .field{margin-bottom:1px}.inlet-table .input-wrap{margin-top:0}.inlet-table input{font-size:12px;padding:7px 5px}.inlet-table .unit{font-size:7px;padding-right:4px}#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(15px);background:#2e5139;color:#f0f6e8;border:1px solid #66865a;border-radius:7px;padding:12px 22px;font-size:12px;box-shadow:0 8px 35px #24442c20;opacity:0;pointer-events:none;transition:.2s;z-index:100;max-width:90vw}#toast.visible{opacity:1;transform:translateX(-50%)}.flow-trace{fill:none;animation:flow-dash 1.5s linear infinite}@keyframes flow-dash{to{stroke-dashoffset:-20}}[hidden]{display:none!important}@media(max-width:1150px){.sidebar{width:200px;padding:25px 13px}main{margin-left:200px}.content{padding:30px 25px}.topbar{padding:0 25px}.workspace-grid{grid-template-columns:270px minmax(0,1fr);gap:17px}.panel{padding:19px}.results-cards{grid-template-columns:1fr 1fr}.metric-label{min-height:15px}.profile-grid{grid-template-columns:1fr}.legend{display:none}.page-heading h1{font-size:29px}}@media(max-width:850px){.sidebar{position:static;width:100%;padding:16px 22px;flex-direction:row;align-items:center;gap:20px}.brand{padding:0}.brand span{font-size:24px}.brand small{font-size:6px}.brand>svg{width:23px}.sidebar nav{display:flex;margin-left:auto;gap:5px}.nav-label,.sidebar-rule,.sidebar-bottom,.side-link{display:none}.mode-button{margin:0;padding:9px;width:auto;font-size:11px;gap:7px}.mode-button small{display:none}.nav-symbol{font-size:19px}main{margin-left:0}.topbar{height:55px}.content{padding:26px 22px}.workspace-grid{grid-template-columns:260px minmax(0,1fr);gap:16px}.panel{padding:17px}h2{font-size:15px}.page-heading h1{font-size:28px}.lead{max-width:410px}.button-row{gap:13px}.flow-strip strong{font-size:14px}}@media(max-width:660px){.sidebar{padding:14px;gap:8px}.brand span{font-size:21px}.brand small{font-size:5px;letter-spacing:1.5px}.mode-button{font-size:9px;padding:8px}.nav-symbol{display:none}.content{padding:23px 15px}.topbar{padding:0 15px;font-size:8px}.topbar .text-button{font-size:10px;margin-left:12px}h1{font-size:26px!important}.lead{font-size:11px}.page-heading{align-items:flex-start;gap:10px}.page-heading .primary{padding:10px 11px;font-size:10px;margin-top:25px}.workspace-grid{grid-template-columns:1fr}.parameters{position:static}.field-grid{gap:15px}.panel{margin-bottom:16px}.panel-head{margin-bottom:16px;gap:9px}.button-row{gap:10px;flex-wrap:wrap}.button-row .text-button{font-size:9px}.flow-strip{gap:5px}.flow-strip span{font-size:8px}.flow-strip strong{font-size:14px}footer{flex-direction:column;gap:7px}.profile-grid{gap:5px}.candidate-card{grid-template-columns:18px minmax(0,1fr) auto;gap:8px}dialog{padding:22px 18px}.dialog-toolbar{flex-wrap:wrap}.inlet-table{grid-template-columns:30px 1fr 1fr}.inlet-table input{font-size:14px}.model-note{padding:13px}.methods-content p,.references{font-size:11px}#schematic{min-height:0}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+.drive-options{margin-bottom:18px}.drive-options button{min-width:0;padding:10px 4px;font-size:10px}.operating-readout{background:#eff4e9;border:1px solid #dce6d3;border-radius:6px;padding:12px;margin:16px 0 20px;color:#58734c;font-size:10px}.operating-readout>p{font-size:9px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:9px;color:#7a906b}.operating-readout>div{display:flex;justify-content:space-between;gap:8px;margin:5px 0}.operating-readout strong{font-weight:500;font-variant-numeric:tabular-nums}.operating-readout small{font-size:8px;color:#899b7a}.screening-limits{margin:16px 0 10px;padding:10px;border-left:2px solid #b1bd99;background:#f7f9f2;font-size:10px;color:#7e8e6c;line-height:1.8}
+
+.language-toggle{display:flex;align-items:center;gap:9px;width:100%;border:1px solid #758e72;border-radius:7px;padding:11px 12px;margin-top:22px;color:#e3ecd9;font-size:11px;text-align:left;flex-shrink:0}.language-toggle:hover{background:#365a45}.language-toggle b{margin-left:auto;background:#c5d7b5;color:#203f34;border-radius:4px;padding:3px 5px;font-size:9px}.language-toggle:focus-visible{outline:2px solid #d9e9b8;outline-offset:3px}
+@media(max-width:850px){.language-toggle{width:auto;margin-top:0;padding:8px;gap:5px;font-size:10px}.language-toggle>span:first-child{display:none}.sidebar{flex-wrap:wrap}.language-toggle b{font-size:8px}}
+@media(max-width:450px){.sidebar nav{order:3;width:100%;margin-left:0}.sidebar nav .mode-button{flex:1}.language-toggle{margin-left:auto}}
+
+</style></head><body>
+<aside class="sidebar"><a class="brand" href="#"><svg width="28" height="32" viewBox="0 0 28 32" aria-hidden="true"><path d="M14 2C10 9 3 14 3 21a11 11 0 0 0 22 0C25 14 18 9 14 2Z" fill="#c5d7b5"/><circle cx="14" cy="22" r="5" fill="#203f34"/></svg><span>DropLab<small>MICROFLUIDIC STUDIO</small></span></a><div class="nav-label">DESIGN WORKSPACE</div><nav aria-label="Design modules"><button data-mode="droplet" class="mode-button active"><span class="nav-symbol">◒</span><span>Droplet generator<small>T-junction & flow focusing</small></span></button><button data-mode="gradient" class="mode-button"><span class="nav-symbol">≋</span><span>Concentration gradient<small>Mixing, diffusion & dilution</small></span></button></nav><div class="sidebar-rule"></div><button class="side-link" id="open-candidates">▦ <span>Candidate library</span><b id="candidate-count">0</b></button><button class="side-link" id="open-methods">ⓘ <span>Models & references</span></button><button id="toggle-language" class="language-toggle" type="button" data-no-i18n aria-pressed="false" aria-label="切换到中文"><span aria-hidden="true">◎</span><span>中文 / English</span><b data-language-current>EN</b></button><div class="sidebar-bottom"><div class="local-status" id="storage-status"><i></i> Saved in this browser</div><p>Design, compare, refine.<br>Engineering estimates for early design.</p><span class="version">DROP LAB / 2.2</span></div></aside>
+<main><header class="topbar"><span>WORKSPACE <span class="slash">/</span> <span id="breadcrumb">Droplet generator</span></span><div><button class="text-button" id="export-backup">Export workspace</button><button class="text-button" id="import-backup">Import</button><input hidden type="file" id="import-file" accept=".json,application/json"></div></header><div class="content"><div class="page-heading"><div><p class="eyebrow">MICROFLUIDIC DESIGN TOOLKIT</p><h1 id="page-title">Droplet generator</h1><p class="lead" id="page-subtitle"></p></div><button class="primary" id="save-candidate">＋ Save candidate</button></div>
+<div class="workspace-grid"><section class="panel parameters" aria-labelledby="parameters-heading"><div class="panel-head"><h2 id="parameters-heading">Design inputs</h2><button class="text-button" id="reset-design">Reset</button></div><div id="architecture-picker"></div><form id="parameter-form" novalidate></form><p class="small muted" id="input-help"></p></section><div class="results-column"><div class="alert" id="validation-alert" role="alert" hidden></div><section class="panel overview"><div class="panel-head"><div><p class="eyebrow">LIVE SCHEMATIC</p><h2>Chip & flow overview</h2></div><span class="badge" id="architecture-badge"></span></div><div id="schematic"></div><div class="flow-strip" id="flow-strip"></div></section><section class="results-cards" id="results-cards" aria-live="polite"></section><section class="panel chart-panel"><div class="panel-head"><div><p class="eyebrow">PARAMETER RESPONSE</p><h2 id="sensitivity-title">Flow-ratio sensitivity</h2></div><span class="legend"><i></i> Current design</span></div><div id="sensitivity-chart"></div><p class="small muted" id="sensitivity-note"></p></section></div></div>
+<section class="panel" id="profile-panel" hidden><div class="panel-head"><div><p class="eyebrow">SPATIAL DISTRIBUTION</p><h2 id="profile-title">Outlet concentration profile</h2></div><button class="text-button" id="export-outlets">Export outlet CSV ↓</button></div><div class="profile-grid"><div id="profile-chart"></div><div class="table-wrap" id="outlet-table"></div></div></section>
+<section class="panel" id="compare"><div class="panel-head"><div><p class="eyebrow">SIDE BY SIDE</p><h2>Compare designs</h2></div><div class="button-row"><button class="text-button" id="choose-candidates">Choose candidates</button><button class="text-button" id="export-csv">Export CSV ↓</button></div></div><p class="small muted">Current inputs and up to four saved candidates from this module.</p><div class="table-wrap" id="comparison-table"></div></section>
+<section class="panel summary-panel"><div class="panel-head"><div><p class="eyebrow">DESIGN RECORD</p><h2>Design summary</h2></div><div class="button-row"><button class="text-button" id="export-diagram">Download diagram ↓</button><button class="text-button" id="export-summary">Export summary ↓</button></div></div><p id="design-summary"></p><div class="model-note"><span class="model-indicator"></span><div><strong id="model-status"></strong><ul id="model-warnings"></ul></div></div></section><footer><span>DropLab · Microfluidic Design Studio</span><button class="text-button" id="footer-methods">Models & references</button><span>Validate with simulation and experiment.</span></footer></div></main>
+<dialog id="candidate-dialog"><div class="dialog-head"><div><p class="eyebrow">DESIGN RECORDS</p><h2>Candidate library</h2></div><button class="icon-button" data-close aria-label="Close candidate library">×</button></div><div class="dialog-toolbar"><div class="segment"><button data-candidate-mode="droplet">Droplets</button><button data-candidate-mode="gradient">Gradients</button></div><button class="text-button" id="restore-examples">Restore examples</button></div><p class="small muted">Select up to four designs per module. Records stay in this browser; export a workspace backup to transfer them.</p><div id="candidate-list"></div></dialog>
+<dialog id="save-dialog"><div class="dialog-head"><h2>Save current design</h2><button class="icon-button" data-close aria-label="Close save dialog">×</button></div><form id="save-form"><label class="field">Design name<input required maxlength="80" id="candidate-name" placeholder="e.g. Six-outlet mixing tree"></label><label class="field">Design notes<textarea rows="4" maxlength="1200" id="candidate-note" placeholder="Purpose, assumptions, next experiment…"></textarea></label><div class="dialog-actions"><button class="secondary" type="button" data-close>Cancel</button><button class="primary" type="submit">Save candidate</button></div></form></dialog>
+<dialog id="methods-dialog"><div class="dialog-head"><div><p class="eyebrow">TRANSPARENT BY DESIGN</p><h2>Models & references</h2></div><button class="icon-button" data-close aria-label="Close model information">×</button></div><div class="methods-content"><p>DropLab provides analytical and numerical screening for early chip design. Presets are calculated examples, not proven fabrication recipes. Diagrams are original parameter-linked schematics, not fabrication masks.</p>
+<h3>Droplet generator</h3><p><b>T-junction:</b> L = wc (1 + α Qd/Qc), V ≈ L wc h, d<sub>eq</sub> = (6V/π)<sup>1/3</sup>, f = Qd/V. The equivalent sphere converts volume; it is not the confined drop width. Application screening limits are now Ca &lt; 0.1 and both inlet Re &lt; 10. Size is suppressed beyond those limits, at h &gt; wc, or outside 1 ≤ wc/wd ≤ 4. Results above the original conservative Ca 0.01 / Re 1 screens are explicitly marked as extrapolation. Changing a screening limit does not validate the squeezing model at higher Ca or Re. α and the plug-volume approximation need calibration.</p><p><b>Flow focusing:</b> d = d<sub>ref</sub> [(Qd/Qc)/q<sub>ref</sub>]<sup>b</sup>, V = πd³/6. Default coefficients are illustrative, not measured. Geometry and fluid-property effects on size are not predicted. Qc is the total of two symmetric continuous inlets; wc is their summed width and lc one branch length. A sphere is shown separately at the common physical scale; the downstream confined shape is not modeled.</p><p><b>Inverse diameter design:</b> enter equivalent-volume sphere diameter and one phase flow, then calculate the other. T-junction ratio q = [π d_eq³/(6 wc² h) − 1]/α; positive flow requires d_eq &gt; (6 wc² h/π)<sup>1/3</sup>. Flow-focusing ratio q = qref (d_eq/dref)<sup>1/b</sup>. With Qc known, Qd = q Qc; with Qd known, Qc = Qd/q. The same screening, calibration and extrapolation rules apply to the solved operating point. A target match is algebraic, not an experimental accuracy claim.</p><p><b>Pressure input:</b> enter continuous and dispersed inlet gauge pressures Pc and Pd. Optional junction backpressure Pj defaults to 0 kPa gauge; both inlets must exceed it. Qd = (Pd − Pj)/Rd. For T-junctions, Qc = (Pc − Pj)/Rc. For symmetric flow focusing, each continuous side has Rside and Qc = 2(Pc − Pj)/Rside. Rc, Rd and Rside use the rigid rectangular-duct odd Fourier series. Pressure is converted from kPa to Pa internally; volume flow is converted to µL/min.</p><p>This is a fully developed, single-phase inlet resistance estimate, not a solved two-phase downstream pressure network. Junction losses, capillary pressure jumps/entry, external tubing, downstream droplet resistance and wall deformation are excluded. If downstream geometry or measured Pj is unknown, inlet gauge pressures alone do not uniquely specify the actual chip flow; Pj = 0 is an explicit simplifying assumption.</p>
+<h3>Concentration gradient generator</h3><p><b>Resistive mixing tree:</b> Kirchhoff flow balance solves a split-and-merge lattice of rectangular resistors. Segment length = base + pitch count × added length. P1/P2/P3 repeat down the rows; two imposed inlet flows drain to ambient outlets. Solute follows solved pressure directions through perfectly mixed nodes. Residence = active network volume / total flow. The first-mode diffusion score M = 1 − exp(−π²Dt/w²) is a screening proxy, not a measured mixing index or a local mixing guarantee. It does not modify outlet means.</p><p><b>Six-inlet co-flow:</b> U ∂C/∂x = D ∂²C/∂y², U = Q/(Wh), no-flux side walls, flow-weighted inlet bands, no axial diffusion. A conservative implicit finite-volume solver uses 120 transverse cells × 80 axial steps and exact initial cell-average overlap. Mixing score = 1 − σout/σin. Sampling bins are mathematical regions in one chamber, not physical outlet branches. Six parallel inlet bands independently simplify the paper's detailed inlet manifold. Inlet pressure losses are excluded; inlet velocities use the entered inlet width and depth.</p><p><b>Programmable dilution bank:</b> stock fraction f = (Ctarget − CB)/(CA − CB), q = Qtotal/N. Two ideal equal-pressure supply buses feed each mixer. Rfeed = (ΔP − Rmix q)/(fraction × q); feed length follows rectangular resistance per length. Pure endpoints close one feed. Target agreement assumes complete mixing, identical fluids, ambient outlets, and negligible supply-bus, bend and junction losses. RMSE is a forward algebraic check, not experimental accuracy.</p><p><b>Capillary diagnostics:</b> Pc = 2γ cosθ (1/w + 1/h) with identical contact angle on all four walls. Isolated-channel fill time = r′ wh L²/(2Pc), only for positive Pc. The diagnostic excludes network transients, finite reservoirs, contact-angle hysteresis and synchronized fronts; the tree is still driven by imposed flow.</p>
+<h3>The supplied papers</h3><ol class="references"><li><a href="https://doi.org/10.1002/smll.73821" target="_blank" rel="noopener">Khalghollah et al. (2026). Small 22, e73821.</a> <i>Machine Learning-Driven Capillary Microfluidic Design Automation for Programmable Gradient Generation and Antimicrobial Testing.</i> Informs the tree concept, width/length/pitch controls, capillary screening and six-level target example. Its transient multiphase CFD, synchronized filling, neural network and experiments are not reproduced.</li><li><a href="https://doi.org/10.3390/mi13111810" target="_blank" rel="noopener">Zhang, Liu & Wang (2022). Micromachines 13, 1810.</a> <i>Machine-Learning-Enabled Design and Manipulation of a Microfluidic Concentration Gradient Generator.</i> Informs six adjustable inlet flows/concentrations, the 2 × 8 mm chamber and D = 425 µm²/s. The preset converts Table 1 velocities using its 400 µm inlet width and an explicitly assumed 100 µm depth. This app uses an independent transport solver, not the paper's ANN.</li><li><a href="https://doi.org/10.1039/B510841A" target="_blank" rel="noopener">Garstecki et al. (2006). Lab on a Chip 6, 437–446.</a> T-junction low-capillary-number squeezing scaling.</li><li><a href="https://doi.org/10.3390/s22145392" target="_blank" rel="noopener">Takken & Wille (2022). Sensors 22, 5392.</a> Hydraulic resistance / pressure-flow circuit abstraction and its limits.</li></ol><p>No trained weights accompanied the PDFs. No paper-reported neural-network accuracy or experimental performance is claimed for this app. Confirm predictions for the intended fluids, wetting, fabrication and operating conditions.</p>
+<h3>Single file & records</h3><p>The downloadable HTML contains all code, styles and calculations, without a CDN, account or calculation service. Only reference links require internet when clicked. Records are browser-specific; some browsers restrict local-file storage. Export JSON backups to move or preserve records. Existing v1 droplet backups are accepted. Import merges candidates by ID and restores valid current inputs; export first if you need a separate snapshot.</p></div></dialog><div id="toast" role="status" aria-live="polite"></div><script type="module">
+// Dictionary-based presentation translation; calculation inputs and record values stay unchanged.
+const UI_LANGUAGE_KEY='droplab.language.v1';
+let uiLanguage='en';
+const uiPairs=`
+MICROFLUIDIC STUDIO|微流控设计工作台
+DESIGN WORKSPACE|设计工作区
+Design modules|设计模块
+Droplet generator|液滴产生器
+T-junction & flow focusing|T 型交汇与流动聚焦
+Concentration gradient generator|浓度梯度产生器
+Concentration gradient|浓度梯度
+Mixing, diffusion & dilution|混合、扩散与稀释
+Candidate library|候选方案库
+Models & references|模型与参考文献
+Saved in this browser|已保存在当前浏览器
+Storage unavailable · export backup|本地保存不可用，请导出备份
+Design, compare, refine.|设计、对比、优化。
+Engineering estimates for early design.|用于初步设计的工程估算。
+WORKSPACE|工作区
+Export workspace|导出工作区
+Import|导入
+MICROFLUIDIC DESIGN TOOLKIT|微流控设计工具集
+Turn flow rates and channel dimensions into a considered starting point.|根据流量与流道尺寸，建立可比较的初始设计。
+Shape a concentration profile. Explore the flow, geometry and diffusion behind it.|设计浓度分布，探索流量、几何结构和扩散的影响。
+＋ Save candidate|＋ 保存候选方案
+Save candidate|保存候选方案
+Design inputs|设计参数
+Reset|重置
+Chip architecture|芯片结构
+T-junction|T 型交汇
+Flow focusing|流动聚焦
+Squeezing model|挤压成滴模型
+Reference power law|参考点幂律模型
+Operating mode|输入模式
+Flow rates|流量输入
+Flow input|流量输入
+Target diameter|目标直径
+Pressures|压力输入
+Pressure input|压力输入
+Inverse design|直径反算
+Flow to calculate|需要反算的流量
+Calculate Qd · hold Qc|反算 Qd，已知 Qc
+Calculate Qc · hold Qd|反算 Qc，已知 Qd
+Target & known flow|目标直径与已知流量
+Target equivalent diameter · d_eq|目标等体积球直径 · d_eq
+Known continuous flow · Qc|已知连续相流量 · Qc
+Known total continuous flow · Qc|已知连续相总流量 · Qc
+Known dispersed flow · Qd|已知分散相流量 · Qd
+d_eq is the diameter of a sphere with the same volume. It is not T-junction axial length or confined droplet width.|d_eq 指相同体积球体的直径，不是 T 型液滴的轴向长度或受限宽度。
+Inlet pressures · gauge|入口表压
+Continuous inlet pressure · Pc|连续相入口压力 · Pc
+Dispersed inlet pressure · Pd|分散相入口压力 · Pd
+Junction pressure reference|交汇处压力参考
+Junction backpressure · Pj|交汇处背压 · Pj
+Default Pj = 0 kPa gauge. Enter actual junction backpressure when known. Each inlet pressure must exceed Pj.|默认 Pj = 0 kPa 表压；如已知实际交汇处背压，请填写。两相入口压力均须大于 Pj。
+Flows are calculated from Pin − Pj and inlet resistance. Downstream two-phase losses, capillary pressure jumps and tubing are not included.|根据 Pin − Pj 和入口支路阻力计算流量，不包含下游两相流损失、毛细压力跃变与外接管路阻力。
+Continuous phase · Qc|连续相流量 · Qc
+Continuous · total Qc|连续相总流量 · Qc
+Dispersed phase · Qd|分散相流量 · Qd
+Operating point|当前工作点
+Calculated operating point|计算得到的工作点
+Qc · total|Qc · 连续相总流量
+Inlet ΔPc / ΔPd|入口压降 ΔPc / ΔPd
+Target d_eq|目标 d_eq
+Operating point unavailable until the inputs are valid.|请修正输入后查看工作点。
+Channel dimensions|流道尺寸
+Main width · wc|主流道宽度 · wc
+Summed side widths · wc|两侧入口总宽 · wc
+Dispersed inlet · wd|分散相入口宽度 · wd
+Common depth · h|共同深度 · h
+Continuous inlet length|连续相入口长度
+Dispersed inlet length|分散相入口长度
+Empirical reference · calibrate first|经验参考参数 · 使用前标定
+Reference diameter|参考球直径
+Reference Qd/Qc|参考流量比 Qd/Qc
+Exponent · b|幂律指数 · b
+Reference total Qc|参考连续相总流量 Qc
+Fluid properties & model settings|流体物性与模型设置
+Continuous viscosity|连续相动力黏度
+Dispersed viscosity|分散相动力黏度
+Continuous density|连续相密度
+Dispersed density|分散相密度
+Interfacial tension|界面张力
+T-junction coefficient · α|T 型几何系数 · α
+Application screens: Ca < 0.1 · Re_c < 10 · Re_d < 10.|应用筛选条件：Ca < 0.1，Re_c < 10，Re_d < 10。
+Above Ca 0.01 or Re 1, size is marked as expanded-range extrapolation.|Ca 达到 0.01 或 Re 达到 1 时，尺寸结果将标为扩大范围的模型外推。
+Symmetric continuous inlets: Qc is total flow, wc is summed width, lc is one branch length. Reference coefficients need calibration.|对称连续相入口：Qc 为两侧总流量，wc 为两侧宽度之和，lc 为单侧长度。参考系数需标定。
+Immiscible Newtonian fluids, rigid channels and continuous-phase wall wetting are assumed.|假设两相互不相溶、均为牛顿流体，流道为刚性，连续相优先润湿壁面。
+LIVE SCHEMATIC|实时示意图
+Chip & flow overview|芯片与流动概览
+Flow ratio · Qd/Qc|流量比 · Qd/Qc
+Total inlet flow|总入口流量
+Inlet Re · c / d|入口 Re · 连续相 / 分散相
+Equivalent diameter · estimate|等体积球直径 · 估算
+Drop volume · estimate|单滴体积 · 估算
+Generation frequency|液滴生成频率
+Capillary number · Ca|毛细数 · Ca
+Rectangular plug approximation|矩形液塞体积近似
+Unconfined equivalent sphere|非受限等体积球
+Dispersed volume conservation|分散相体积守恒
+Expanded screen < 0.1|扩大后的筛选上限 < 0.1
+PARAMETER RESPONSE|参数响应
+Flow-ratio sensitivity|流量比敏感性
+Flow-rate sensitivity|流量敏感性
+Supply-pressure sensitivity|供压敏感性
+Current design|当前设计
+Equivalent diameter (µm)|等体积球直径（µm）
+Qd / Qc · Qc fixed|Qd / Qc · 固定 Qc
+Hypothetical flow sweep: dispersed flow changes at the resolved Qc; pressure/target controls are not held fixed. Valid expanded-range points are extrapolations.|假设性流量扫描：固定当前计算得到的 Qc，改变分散相流量；不维持压力或目标直径约束。扩大范围内的结果属于模型外推。
+Hypothetical flow sweep at resolved Qc, independent of current input mode. Reference-point empirical response; calibrate before use. Geometry and fluid-property size effects are not modeled.|固定当前计算得到的 Qc 进行假设性流量扫描，与当前输入模式独立。曲线基于参考点经验模型，需先标定；未计算几何和物性对尺寸的影响。
+Only valid model points are plotted.|仅绘制有效模型点。
+SIDE BY SIDE|方案并列对比
+Compare designs|方案对比
+Choose candidates|选择候选方案
+Export CSV ↓|导出 CSV ↓
+Current inputs and up to four saved candidates from this module.|对比当前参数与本模块中最多四个已保存方案。
+Parameter / result|设计参数 / 计算结果
+Unit|单位
+Architecture|芯片结构
+Target diameter · inverse mode|目标直径 · 反算模式
+Unknown flow · inverse mode|待求流量 · 反算模式
+Inlet gauge pressure Pc / Pd · pressure mode|入口表压 Pc / Pd · 压力模式
+Junction backpressure · pressure mode|交汇处背压 · 压力模式
+Continuous flow|连续相流量
+Dispersed flow|分散相流量
+Main / summed side width|主流道宽度 / 两侧入口总宽
+Dispersed inlet width|分散相入口宽度
+Channel depth|流道深度
+Continuous / dispersed inlet length|连续相 / 分散相入口长度
+Viscosity · continuous / dispersed|动力黏度 · 连续相 / 分散相
+Density · continuous / dispersed|密度 · 连续相 / 分散相
+Geometry coefficient α|几何系数 α
+Axial length|轴向长度
+Equivalent diameter|等体积球直径
+Drop volume|单滴体积
+Frequency|生成频率
+Capillary number|毛细数
+Inlet ΔP · c / d|入口压降 · 连续相 / 分散相
+Reference d / q / b · FF|参考 d / q / b · 流动聚焦
+Reference total Qc · FF|参考连续相总流量 · 流动聚焦
+Screening / calibration|筛选 / 标定状态
+Size suppressed|不输出尺寸
+Empirical · calibrate|经验估算 · 需标定
+Expanded · extrapolated|扩大范围 · 外推
+Original screen · validate|原筛选范围 · 待验证
+DESIGN RECORD|设计记录
+Design summary|设计摘要
+Download diagram ↓|下载图示 ↓
+Export summary ↓|导出摘要 ↓
+Input corrections required|请修正输入
+Size model outside screening range|尺寸模型超出筛选范围
+Expanded range · model extrapolation|扩大范围 · 模型外推
+Original conservative screen passed · validate experimentally|通过原保守筛选 · 需实验验证
+Empirical estimate · calibration required|经验估算 · 需标定
+Validate with simulation and experiment.|请通过仿真和实验验证。
+DESIGN RECORDS|设计方案记录
+Droplets|液滴方案
+Gradients|梯度方案
+Restore examples|恢复预设方案
+Select up to four designs per module. Records stay in this browser; export a workspace backup to transfer them.|每个模块最多选择四个方案对比。记录保存在当前浏览器；可导出工作区备份进行迁移。
+Save current design|保存当前设计
+Design name|方案名称
+Design notes|设计备注
+Cancel|取消
+Close candidate library|关闭候选方案库
+Close save dialog|关闭保存窗口
+Close model information|关闭模型说明
+Load design ↗|载入设计 ↗
+Edit record|编辑记录
+Remove|移除
+example|示例
+e.g. Six-outlet mixing tree|例如：六出口树状混合网络
+Purpose, assumptions, next experiment…|设计目的、假设条件、下一步实验……
+Candidate saved.|候选方案已保存。
+Candidate updated.|候选方案已更新。
+Candidate loaded into current inputs.|已将候选方案载入当前参数。
+Candidate removed. Use workspace backups to preserve portable records.|候选方案已移除。建议导出工作区备份保存记录。
+Current inputs reset. Saved candidates are unchanged.|当前参数已重置，已保存方案保持不变。
+Select up to four candidates per module.|每个模块最多选择四个候选方案。
+Correct the inputs before saving.|请修正输入后再保存。
+The workspace holds 80 candidates. Remove a record or export a backup.|工作区最多保存 80 个候选方案，请移除部分记录或导出备份。
+No candidates yet. Save a design or restore examples.|暂无候选方案，请保存设计或恢复预设。
+Stored data could not be read. Defaults are loaded; import a JSON backup to recover records.|无法读取已保存的数据，已载入默认参数；可导入 JSON 备份恢复记录。
+Backups must be smaller than 2 MB.|备份文件须小于 2 MB。
+Use a valid DropLab v1 or v2 JSON workspace backup.|请使用有效的 DropLab v1 或 v2 JSON 工作区备份。
+Current design parameters in the backup are invalid.|备份中的当前设计参数无效。
+The backup has invalid or duplicate candidate records.|备份包含无效或重复的候选记录。
+The merged workspace exceeds 80 records. Remove candidates first.|合并后将超过 80 条记录，请先移除部分候选方案。
+Invalid candidate selections.|候选方案选择数据无效。
+This file is not valid JSON.|此文件不是有效的 JSON。
+Import failed.|导入失败。
+Mixing tree|树状混合网络
+Hydraulic network|液阻网络
+Six-inlet co-flow|六入口共流扩散
+Advection + diffusion|对流与扩散
+Dilution bank|稀释支路网络
+Target to resistance|由目标反算阻力
+Resistive mixing tree|液阻树状混合网络
+Programmable dilution bank|可编程稀释支路网络
+Feed conditions|入口条件
+Reservoir A flow|储液池 A 流量
+Reservoir B flow|储液池 B 流量
+Reservoir A concentration|储液池 A 浓度
+Reservoir B concentration|储液池 B 浓度
+Network geometry|网络几何参数
+Outlet count|出口数量
+Channel width|流道宽度
+Base segment length|基础流道段长度
+Outlet channel length|出口段长度
+Added length per pitch|每个折返增加的长度
+Row pitch · P1|行折返数 · P1
+Row pitch · P2|行折返数 · P2
+Row pitch · P3|行折返数 · P3
+Six inlet conditions|六个入口的条件
+INLET|入口
+FLOW · µL/min|流量 · µL/min
+CONC. · mM|浓度 · mM
+Reactive chamber|反应腔室
+Chamber width|腔室宽度
+Chamber length|腔室长度
+Each inlet width|各入口宽度
+Outlet sampling bins|出口采样区数量
+Target & supply|目标与供给
+Total outlet flow|出口总流量
+Equal supply pressure|共同供给压力
+Target profile|目标浓度分布
+Linear between endpoints|端点间线性分布
+Geometric between endpoints|端点间等比分布
+Custom concentration levels|自定义浓度序列
+Target levels · mM|目标浓度序列 · mM
+Custom target concentrations|自定义目标浓度
+Channel & routing|流道与布线
+Feed / mixer width|进料 / 混合段宽度
+Common depth|共同深度
+Mixing channel length|混合段长度
+Max routed feed length|进料支路长度上限
+Transport & fluid properties|输运与流体物性
+Diffusion coefficient · D|扩散系数 · D
+Dynamic viscosity|动力黏度
+Fluid density|流体密度
+Isolated-channel capillary screen|单流道毛细驱动估算
+Uniform contact angle|统一接触角
+Surface tension|表面张力
+degrees|度
+Isolated-channel screening only; the network is driven by imposed flow.|仅估算单流道毛细驱动；上方网络按指定入口流量求解。
+Steady imposed flow and perfectly mixed nodes. Width, depth, pitch and outlet count update the hydraulic network.|假设稳态指定流量、节点完全混合；宽度、深度、折返数和出口数量会联动更新液阻网络。
+Six parallel inlet bands in one chamber. Concentration mM = mol/m³. Sampling bins are mathematical regions, not splitter branches.|单腔室内六股并行入口流；浓度单位 mM = mol/m³。采样区为数学分区，不代表实际分流支路。
+Targets and total flow determine feed resistance and length. Two ideal equal-pressure supply buses are assumed.|由目标浓度和总流量确定进料阻力及长度，假设两条理想等压供给总线。
+Mean concentration|平均浓度
+Flow-weighted across outputs|按出口流量加权
+Diffusion mixing score|扩散混合指标
+Diffusion screening score|扩散筛选指标
+Mean residence time|平均停留时间
+Mixing channel only|仅混合段
+Active volume / total flow|有效流道体积 / 总流量
+Chamber length / mean speed|腔室长度 / 平均速度
+Longest required feed|所需最长进料支路
+Pressure indicator|压力指标
+Largest inlet pressure|最大入口压力
+Chamber-only pressure drop|仅腔室内压降
+Within routed length limit|未超过布线长度上限
+Routing limit exceeded|超过布线长度上限
+Outputs / sampling bins|出口 / 采样区数量
+Reynolds number|雷诺数
+SPATIAL DISTRIBUTION|空间浓度分布
+Outlet concentration profile|出口浓度分布
+Transverse concentration profile|横向浓度分布
+Export outlet CSV ↓|导出出口 CSV ↓
+Concentration (mM)|浓度（mM）
+Position across chamber (µm)|腔室横向位置（µm）
+Outlet index|出口编号
+Solid: outlet profile · dashed: inlet bands|实线：出口分布；虚线：入口浓度带
+Outlet|出口
+Bin / outlet|采样区 / 出口
+A feed (mm)|A 支路长度（mm）
+B feed (mm)|B 支路长度（mm）
+Closed|关闭
+closed|关闭
+Outlets / sampling bins|出口 / 采样区数量
+Channel / chamber width|流道 / 腔室宽度
+Diffusion coefficient|扩散系数
+Flow-weighted mean|流量加权平均浓度
+Output concentration levels|各出口浓度
+Residence indicator¹|停留时间指标¹
+Mixing / screening score¹|混合 / 筛选指标¹
+Pressure indicator¹|压力指标¹
+Longest required feed · bank|所需最长进料支路 · 稀释网络
+Ideal target RMSE · bank|理想目标均方根误差 · 稀释网络
+Routing limit · bank|布线长度限制 · 稀释网络
+Within limit|未超限
+Exceeded|已超限
+Ideal target balance solved · validate mixing and routing|已求解理想浓度配比 · 请验证混合与布线
+Ideal balance solved · routing limit exceeded|已求解理想配比 · 布线长度超限
+Screening calculation complete · validate local transport|筛选计算完成 · 请验证局部输运
+Total flow / current flow · inlet ratios fixed|总流量 / 当前总流量 · 入口比例固定
+Supply pressure / current pressure|供给压力 / 当前供给压力
+Longest required feed (mm)|所需最长进料支路（mm）
+Diffusion score (%)|扩散指标（%）
+Flow and targets remain fixed. Feed lengths are re-sized at each pressure; insufficient-pressure points are omitted.|固定流量和目标浓度，在各供压下重新计算进料支路长度；省略压力不足的点。
+All inlet flows scale together. Ideal mixed-node concentrations stay unchanged; residence and diffusion screening change.|所有入口流量同比例变化；理想混合节点的浓度保持不变，停留时间和扩散筛选指标随之改变。
+All inlet flows scale together at fixed concentrations and geometry. Faster flow leaves less time for diffusion. Sweep resolution: 72 transverse cells.|固定浓度和几何结构，所有入口流量同比例变化；流速越高，扩散时间越短。扫描采用 72 个横向网格单元。
+Correct the highlighted inputs to generate a design summary.|请修正标出的输入，再生成设计摘要。
+Correct the inputs before using the design results.|请修正输入后再使用计算结果。
+Correct the inputs. Results have been cleared.|请修正输入，当前结果已清空。
+Invalid inputs|输入无效
+Correct the parameters to update the schematic|请修正参数后查看联动图示
+No size estimate under these conditions|当前条件不输出尺寸估算
+Equivalent-volume sphere|等体积球展示区
+Unconfined; outlet shape not modeled|非受限展示；不预测出口内形状
+Main cross-section|主流道截面
+One continuous inlet cross-section|单侧连续相入口截面
+same scale|统一比例尺
+Inlet lengths abbreviated|入口长度已截断
+parameter-linked schematic|参数联动示意图
+Cross-section shows depth.|截面显示深度。
+size model unavailable|尺寸模型不可用
+axial length|轴向长度
+equivalent diameter|等体积球直径
+T axial length|T 型轴向长度
+6 inlets → flow-weighted bands → advection + diffusion|六入口 → 按流量分配浓度带 → 对流与扩散
+Concentration color scale · lengths abbreviated|浓度色标 · 流道长度已截断
+Feed lengths A / B (mm). Meanders indicate resistance; routing is illustrative, not a fabrication mask.|A / B 进料段长度（mm）。折返表示阻力大小；布线仅为示意，不是加工掩模。
+Aspect ratio bounded for legibility; sampling bins are not physical outlets.|为便于阅读，长宽比经过限制；采样区不代表实体出口。
+depth section at right.|右侧为深度截面。
+Row lengths|各行长度
+pitch count|折返数
+repeated.|按行重复。
+mean residence|平均停留时间
+Inlet width|入口宽度
+Outlet segment|出口段
+signed down the rows|以沿行向下为正方向
+Small T-junction|小尺度 T 型方案
+Reference T-junction|基准 T 型方案
+Higher-frequency T-junction|较高频率 T 型方案
+Larger-volume T-junction|较大体积 T 型方案
+Flow-focusing reference|基准流动聚焦方案
+Flow-focusing low flow|低流量流动聚焦方案
+Six-outlet mixing tree|六出口树状混合网络
+Eight-outlet slow-flow tree|八出口低流量树状网络
+Six-inlet paper example|六入口论文参数示例
+Programmable six-level bank|可编程六级稀释网络
+60 × 30 µm main channel. Model screening passed; not experimentally validated.|主流道为 60 × 30 µm。通过模型筛选，尚未做实验验证。
+100 × 50 µm reference geometry. Model screening passed; not experimentally validated.|基准几何为 100 × 50 µm。通过模型筛选，尚未做实验验证。
+80 × 40 µm main channel. A calculated example, not experimentally validated.|主流道为 80 × 40 µm，为计算示例，尚未做实验验证。
+150 × 75 µm main channel. A calculated example, not experimentally validated.|主流道为 150 × 75 µm，为计算示例，尚未做实验验证。
+Each continuous inlet: 3 µL/min, 100 µm wide. Reference point and exponent are illustrative, not measured; calibrate experimentally.|每侧连续相入口流量为 3 µL/min，宽度为 100 µm。参考点与指数为演示值，非实测数据，需实验标定。
+Each continuous inlet: 2 µL/min, 80 µm wide. Reference point and exponent are illustrative, not measured; calibrate experimentally.|每侧连续相入口流量为 2 µL/min，宽度为 80 µm。参考点与指数为演示值，非实测数据，需实验标定。
+Inspired by the 2026 paper geometry range: 500 × 100 µm, base length 8 mm, 2 pitches per row. This steady imposed-flow model is not the published capillary CFD or ANN.|参考 2026 年论文的几何范围：500 × 100 µm、基础长度 8 mm、每行折返数为 2。本工具是指定流量的稳态模型，并非论文中的毛细流 CFD 或神经网络。
+Lower flow and longer mixing paths. A calculated example; experimental validation is required.|采用较低流量和较长混合路径，为计算示例，需实验验证。
+2022 Table 1 velocities converted using its 400 µm inlet width and an assumed 100 µm depth. Concentrations and 2 × 8 mm chamber follow the paper. Independent plug-flow diffusion model.|按 2022 年论文表 1 的速度，以入口宽度 400 µm、假定深度 100 µm 换算流量；浓度和 2 × 8 mm 腔室尺寸参考论文。采用独立的柱塞流扩散模型。
+Targets 1, 0.9, 0.65, 0.35, 0.1, 0 mM, inspired by the 2026 target vector. Independent inverse resistance design, not a reproduction of the published chip.|目标浓度为 1、0.9、0.65、0.35、0.1、0 mM，参考 2026 年论文的目标序列。采用独立的阻力反算设计，不是对论文芯片的复现。
+Choose a valid chip geometry.|请选择有效的芯片结构。
+Choose flow, target diameter or pressure input.|请选择流量、目标直径或压力输入模式。
+Choose the phase flow to calculate.|请选择需要反算流量的相。
+Continuous inlet pressure must exceed junction backpressure.|连续相入口压力必须大于交汇处背压。
+Dispersed inlet pressure must exceed junction backpressure.|分散相入口压力必须大于交汇处背压。
+The target diameter produces no finite positive flow ratio. Adjust the target or calibration.|目标直径无法得到有限的正流量比，请调整目标或标定参数。
+Ca ≥ 0.1: outside the expanded application screening limit.|Ca ≥ 0.1，超出扩大后的应用筛选范围。
+Inlet Re ≥ 10: outside the expanded application screening limit.|入口 Re ≥ 10，超出扩大后的应用筛选范围。
+Depth exceeds main width: outside this planar T-junction model.|深度大于主流道宽度，偏离本平面 T 型模型。
+Inlet width ratio is outside the T-junction range (1 ≤ wc/wd ≤ 4).|入口宽度比不在所采用的 T 型范围内（1 ≤ wc/wd ≤ 4）。
+Expanded-range extrapolation: the app now permits Ca < 0.1 and inlet Re < 10. This does not extend the validated range of the squeezing law or an empirical flow-focusing calibration. Verify the breakup regime and size experimentally.|扩大范围的外推：应用允许 Ca < 0.1、入口 Re < 10，但这不代表挤压成滴公式或流动聚焦标定的有效范围已扩大。请通过实验确认成滴流态与尺寸。
+Pressure-driven inlet estimate: Q = (Pin − Pj)/R. Pj defaults to 0 kPa gauge and must represent the actual junction backpressure. Rigid, fully developed single-phase inlet losses only; downstream two-phase resistance, junction losses, capillary entry/pressure jumps, tubing and PDMS deformation are excluded.|压力驱动入口估算：Q = (Pin − Pj)/R。Pj 默认为 0 kPa 表压，应按实际交汇处背压填写。仅考虑刚性入口支路的充分发展单相流损失，不含下游两相阻力、交汇损失、毛细进入压/压力跃变、外接管路及 PDMS 变形。
+Inverse size design solves the same forward model for one unknown phase flow. Diameter means equivalent-volume sphere diameter, not T-junction axial length or confined transverse width. Matching a target algebraically is not experimental validation.|尺寸反算根据同一正向模型求解未知相流量。直径指等体积球直径，不是 T 型轴向长度或受限横向宽度。代数上匹配目标不代表已通过实验验证。
+Reference-point power law. Default coefficients are illustrative, not measured. Geometry and fluid-property effects on size are not modeled. Inverse and pressure-derived estimates retain this limitation.|参考点幂律经验模型：默认系数为演示值，非实测值。未建模几何与流体物性对尺寸的影响；反算和压力换算同样受此限制。
+Qc differs from its reference: size is an empirical extrapolation.|当前 Qc 不同于参考 Qc，尺寸属于经验模型外推。
+Flow focusing: Qc is total flow in two equal-pressure symmetric continuous inlets. wc is their summed width and lc is one branch length. Each side carries Qc/2; its resistance is calculated using wc/2.|流动聚焦：Qc 为两条等压对称连续相支路的总流量，wc 为两侧宽度之和，lc 为单侧长度。每侧流量为 Qc/2，按 wc/2 计算阻力。
+Original low-Ca screening passed. Confirm squeezing and preferential continuous-phase wall wetting experimentally.|通过原低 Ca 筛选；仍需实验确认挤压成滴及连续相优先润湿壁面。
+Extreme flow ratio: verify stable breakup experimentally.|流量比较极端，请通过实验确认稳定成滴。
+Choose a supported architecture.|请选择支持的芯片结构。
+Outlet count must be an integer.|出口数量必须为整数。
+Pitch counts must be integers.|折返数必须为整数。
+Provide six nonnegative flows with a positive total.|请输入六个非负流量，且总流量必须大于零。
+Provide six concentrations between 0 and 10000 mM.|请输入六个 0–10000 mM 范围内的浓度。
+Reservoir concentrations must differ.|两个储液池的浓度必须不同。
+Choose a supported target profile.|请选择支持的目标浓度分布。
+Geometric endpoints must be positive.|等比分布的两个端点浓度均须大于零。
+Insufficient supply pressure for the requested mixer flow. Increase pressure or channel size, or reduce flow.|供给压力不足以维持混合段所需流量，请提高压力、增大流道尺寸或降低流量。
+Some branches reverse relative to the drawn rows; solute follows the solved pressure direction.|部分支路相对于图示行方向发生逆流；溶质按求得的压降方向输运。
+Steady imposed-flow resistor network with perfectly mixed nodes. The diffusion score is a first-mode screening proxy; outlet means are not corrected for incomplete mixing.|采用稳态指定流量液阻网络，节点假定完全混合。扩散指标是一阶模态筛选近似，出口平均浓度未对混合不充分进行修正。
+Capillary pressure and fill time describe one isolated channel with uniform wall wetting, not transient network filling or synchronized fronts.|毛细压力与充填时间仅描述壁面润湿均匀的单条流道，不代表网络瞬态充填或同步液面推进。
+Diffusion screening is below 90%. Verify local mixing with CFD or dye experiments.|扩散筛选指标低于 90%，请通过 CFD 或染料实验验证局部混合。
+Re ≥ 1: validate the fully developed low-inertia hydraulic approximation.|Re ≥ 1，请验证充分发展低惯性液阻近似的适用性。
+Plug-flow advection with transverse diffusion, no-flux side walls, and no axial diffusion. A conservative implicit finite-volume solver allocates inlet bands by flow fraction.|采用柱塞流对流与横向扩散模型，侧壁无通量，忽略轴向扩散。守恒的隐式有限体积求解器按流量比例分配入口浓度带。
+Sampling bins are mathematical regions in one chamber, not fabricated outlet branches. The detailed inlet manifold and inlet pressure losses are excluded.|采样区是同一腔室内的数学分区，不是实际加工的出口支路；未包含详细入口歧管和入口压降。
+Re ≥ 1: validate inlet development and the uniform axial velocity assumption.|Re ≥ 1，请验证入口发展段及均匀轴向速度假设。
+Axial Peclet number is below 10; neglecting axial diffusion may be inappropriate.|轴向佩克莱数低于 10，忽略轴向扩散可能不合适。
+Inverse resistance sizing assumes two ideal equal-pressure buses and ambient outlets. Bus, bend and junction losses and fabrication tolerances are excluded; zero-fraction feeds are closed.|阻力反算假设两条理想等压总线、出口为环境压力；未计总线、弯道、交汇损失和制造公差，零比例进料支路关闭。
+Target agreement assumes complete mixing. RMSE is an ideal algebraic forward check, not experimental accuracy. The diffusion score independently screens the mixer.|目标匹配假设完全混合。均方根误差是理想代数正向校验，不代表实验精度；扩散指标另行筛选混合段。
+Diffusion screening is below 90%. Increase mixer length or reduce flow.|扩散筛选指标低于 90%，请增加混合段长度或降低流量。
+Re ≥ 1: verify the low-inertia hydraulic approximation.|Re ≥ 1，请验证低惯性液阻近似。
+ASSUMPTIONS|模型假设
+UNITS|单位
+ALL PARAMETERS (Qc/Qd are resolved outputs in inverse/pressure modes)|全部参数（反算/压力模式下 Qc、Qd 为计算结果）
+REFERENCES|参考文献
+Model note|模型说明
+Screening or illustrative empirical estimate; calibrate|筛选或演示性经验估算，需标定
+Architecture-specific indicators; see Models & references|指标含义因结构而异，详见“模型与参考文献”
+No trained ANN weights are used. See Models & references for equations and scope.|未使用训练得到的神经网络权重；公式与适用范围详见“模型与参考文献”。
+Rectangular-plug size estimate; geometry coefficient requires calibration.|矩形液塞尺寸估算，几何系数需标定。
+Empirical reference-point estimate; illustrative coefficients require measured calibration.|参考点经验估算，演示系数需用实测数据标定。
+Within the original conservative screen.|处于原保守筛选范围内。
+Expanded-range model extrapolation.|扩大范围的模型外推。
+Size estimate suppressed|不输出尺寸估算
+Application screens|应用筛选条件
+Continuous / dispersed flow|连续相 / 分散相流量
+Main width|主流道宽度
+Summed side width|两侧入口总宽
+Target equivalent diameter|目标等体积球直径
+model target residual|模型与目标的差值
+single-phase inlet pressure drops|单相入口压降
+Inlet gauge pressures Pc/Pd|入口表压 Pc/Pd
+junction Pj|交汇处背压 Pj
+Flows are inlet-resistance estimates, excluding capillary and downstream two-phase losses.|流量由入口阻力近似计算，不含毛细压力和下游两相流损失。
+Flow-weighted mean|流量加权平均浓度
+first-mode diffusion screening|一阶模态扩散筛选
+diffusion mixing|扩散混合
+Channels|流道
+base|基础长度
+pitches|折返数
+adding|每个增加
+Maximum inlet pressure|最大入口压力
+Isolated-channel capillary pressure|单流道毛细压力
+fill time|充填时间
+not spontaneously wetting|不满足自发润湿条件
+Network capillary transients are not simulated.|未模拟网络毛细充填瞬态。
+Chamber|腔室
+mean axial speed|平均轴向速度
+transverse Pe|横向 Pe
+chamber-only pressure drop|仅腔室内压降
+Inlet velocities (mm/s)|入口流速（mm/s）
+Independent plug-flow transport solver, not the paper's ANN or detailed inlet manifold.|独立的柱塞流输运求解器，并非论文的神经网络或详细入口歧管模型。
+Supply pressure|供给压力
+mixer length|混合段长度
+Stock / diluent demand|原液 / 稀释液需求流量
+Maximum required feed|所需最长进料支路
+Longest required feed|所需最长进料支路
+routing limit|布线长度上限
+ideal forward-check RMSE|理想正向校验均方根误差
+Ideal target forward-check RMSE|理想目标正向校验均方根误差
+Output concentrations (mM)|出口浓度（mM）
+Experimental validation is required.|需要实验验证。
+transverse sampling bins|横向采样区
+outlets|出口
+total flow|总流量
+depth|深度
+width|宽度
+dispersed inlet|分散相入口
+residence|停留时间
+volume|体积
+frequency|频率
+solved|已求解
+continuous|连续相
+dispersed|分散相
+within|未超过
+exceeds|超过
+size screening failed|尺寸筛选未通过
+mean|平均值
+Compare|对比
+`.trim().split('\n').map(line=>{const i=line.indexOf('|');return [line.slice(0,i),line.slice(i+1)];});
+uiPairs.push(...[["DropLab provides analytical and numerical screening for early chip design. Presets are calculated examples, not proven fabrication recipes. Diagrams are original parameter-linked schematics, not fabrication masks.", "DropLab 使用解析与数值方法进行芯片初步设计筛选。预设方案是计算示例，未经制备与实验验证。图示为随参数联动的原创示意图，不是加工掩模。"], [", f = Qd/V. The equivalent sphere converts volume; it is not the confined drop width. Application screening limits are now Ca < 0.1 and both inlet Re < 10. Size is suppressed beyond those limits, at h > wc, or outside 1 ≤ wc/wd ≤ 4. Results above the original conservative Ca 0.01 / Re 1 screens are explicitly marked as extrapolation. Changing a screening limit does not validate the squeezing model at higher Ca or Re. α and the plug-volume approximation need calibration.", ", f = Qd/V。等体积球直径用于换算体积，不代表受限液滴宽度。应用筛选条件为 Ca < 0.1、两相入口 Re < 10。超过上述范围、h > wc 或 wc/wd 不在 1–4 内时不显示尺寸预测。超过原保守筛选 Ca 0.01 / Re 1 的结果标为外推。提高筛选上限不代表挤压模型在高 Ca 或 Re 下已获验证。α 与液塞体积近似仍需标定。"], [", V = πd³/6. Default coefficients are illustrative, not measured. Geometry and fluid-property effects on size are not predicted. Qc is the total of two symmetric continuous inlets; wc is their summed width and lc one branch length. A sphere is shown separately at the common physical scale; the downstream confined shape is not modeled.", ", V = πd³/6。默认系数仅为示例，并非实测值。模型不预测几何结构与流体物性对尺寸的影响。Qc 是两个对称连续相入口的总流量；wc 是两侧宽度之和，lc 是单侧长度。等体积球以统一物理比例尺单独显示；不模拟下游液滴的受限形状。"], [" enter equivalent-volume sphere diameter and one phase flow, then calculate the other. T-junction ratio q = [π d_eq³/(6 wc² h) − 1]/α; positive flow requires d_eq > (6 wc² h/π)", " 输入等体积球直径与一相流量，反算另一相流量。T 型结构流量比 q = [π d_eq³/(6 wc² h) − 1]/α；分散相流量为正要求 d_eq > (6 wc² h/π)"], [". With Qc known, Qd = q Qc; with Qd known, Qc = Qd/q. The same screening, calibration and extrapolation rules apply to the solved operating point. A target match is algebraic, not an experimental accuracy claim.", "。已知 Qc 时，Qd = q Qc；已知 Qd 时，Qc = Qd/q。求得的工作点仍须满足相同筛选、标定与外推规则。命中目标仅表示代数关系成立，不代表实验精度。"], [" enter continuous and dispersed inlet gauge pressures Pc and Pd. Optional junction backpressure Pj defaults to 0 kPa gauge; both inlets must exceed it. Qd = (Pd − Pj)/Rd. For T-junctions, Qc = (Pc − Pj)/Rc. For symmetric flow focusing, each continuous side has Rside and Qc = 2(Pc − Pj)/Rside. Rc, Rd and Rside use the rigid rectangular-duct odd Fourier series. Pressure is converted from kPa to Pa internally; volume flow is converted to µL/min.", " 输入连续相与分散相入口表压 Pc、Pd。可选交汇处背压 Pj 默认为 0 kPa 表压；两相入口压力均须高于 Pj。Qd = (Pd − Pj)/Rd。T 型结构 Qc = (Pc − Pj)/Rc；对称流动聚焦每侧阻力为 Rside，Qc = 2(Pc − Pj)/Rside。Rc、Rd 与 Rside 使用刚性矩形流道的奇数阶傅里叶级数。内部将 kPa 换算为 Pa，并将体积流量换算为 µL/min。"], ["This is a fully developed, single-phase inlet resistance estimate, not a solved two-phase downstream pressure network. Junction losses, capillary pressure jumps/entry, external tubing, downstream droplet resistance and wall deformation are excluded. If downstream geometry or measured Pj is unknown, inlet gauge pressures alone do not uniquely specify the actual chip flow; Pj = 0 is an explicit simplifying assumption.", "这里使用充分发展单相入口流动的阻力估算，未求解下游两相压力网络。不计交汇处局部损失、毛细压力跃变与入口压力、外接管路、下游液滴阻力及壁面变形。若下游结构或实测 Pj 未知，仅凭入口表压不能唯一确定实际流量；Pj = 0 是明确的简化假设。"], [" Kirchhoff flow balance solves a split-and-merge lattice of rectangular resistors. Segment length = base + pitch count × added length. P1/P2/P3 repeat down the rows; two imposed inlet flows drain to ambient outlets. Solute follows solved pressure directions through perfectly mixed nodes. Residence = active network volume / total flow. The first-mode diffusion score M = 1 − exp(−π²Dt/w²) is a screening proxy, not a measured mixing index or a local mixing guarantee. It does not modify outlet means.", " 使用基尔霍夫流量守恒求解由矩形流阻组成的分流与合流网络。支路长度 = 基础长度 + 折返数 × 附加长度。P1/P2/P3 沿各行重复；两路给定入口流量由常压出口流出。溶质沿求得的流向通过完全混合节点。停留时间 = 有效网络体积 / 总流量。一阶扩散评分 M = 1 − exp(−π²Dt/w²) 仅用于筛选，既不是实测混合指数，也不保证局部充分混合，不修正出口平均浓度。"], [" U ∂C/∂x = D ∂²C/∂y², U = Q/(Wh), no-flux side walls, flow-weighted inlet bands, no axial diffusion. A conservative implicit finite-volume solver uses 120 transverse cells × 80 axial steps and exact initial cell-average overlap. Mixing score = 1 − σout/σin. Sampling bins are mathematical regions in one chamber, not physical outlet branches. Six parallel inlet bands independently simplify the paper's detailed inlet manifold. Inlet pressure losses are excluded; inlet velocities use the entered inlet width and depth.", " U ∂C/∂x = D ∂²C/∂y²，U = Q/(Wh)。侧壁无通量，入口条带宽度按流量加权，不计轴向扩散。守恒隐式有限体积求解采用 120 个横向单元 × 80 个轴向步，初始浓度使用精确的单元平均重叠积分。混合评分 = 1 − σout/σin。采样区是同一腔室内的数学区域，不是实际分支出口。六条平行入口带简化了论文中的详细歧管，不计入口压损；入口流速按输入宽度和深度计算。"], [" stock fraction f = (Ctarget − CB)/(CA − CB), q = Qtotal/N. Two ideal equal-pressure supply buses feed each mixer. Rfeed = (ΔP − Rmix q)/(fraction × q); feed length follows rectangular resistance per length. Pure endpoints close one feed. Target agreement assumes complete mixing, identical fluids, ambient outlets, and negligible supply-bus, bend and junction losses. RMSE is a forward algebraic check, not experimental accuracy.", " 原液比例 f = (Ctarget − CB)/(CA − CB)，q = Qtotal/N。两条理想等压供给总线为各混合段供液。Rfeed = (ΔP − Rmix q)/(fraction × q)；进料长度由矩形流道单位长度阻力求得。纯组分端点关闭一路进料。目标浓度成立依赖完全混合、两路流体物性相同、出口常压及总线、弯道和交汇处损失可忽略等假设。RMSE 是正向代数校验，不代表实验精度。"], [" Pc = 2γ cosθ (1/w + 1/h) with identical contact angle on all four walls. Isolated-channel fill time = r′ wh L²/(2Pc), only for positive Pc. The diagnostic excludes network transients, finite reservoirs, contact-angle hysteresis and synchronized fronts; the tree is still driven by imposed flow.", " Pc = 2γ cosθ (1/w + 1/h)，假设四壁接触角一致。单流道充填时间 = r′ wh L²/(2Pc)，仅在 Pc 为正时计算。不计网络瞬态、有限储液量、接触角滞后与同步前沿；树形网络仍由给定流量驱动。"], ["Machine Learning-Driven Capillary Microfluidic Design Automation for Programmable Gradient Generation and Antimicrobial Testing.", "机器学习驱动的毛细微流控设计自动化：用于可编程梯度产生及抗菌测试。"], [" Informs the tree concept, width/length/pitch controls, capillary screening and six-level target example. Its transient multiphase CFD, synchronized filling, neural network and experiments are not reproduced.", " 参考其树形结构、宽度/长度/折返参数、毛细筛选与六级目标浓度示例。未复现其瞬态多相 CFD、同步充填、神经网络与实验。"], ["Machine-Learning-Enabled Design and Manipulation of a Microfluidic Concentration Gradient Generator.", "机器学习赋能的微流控浓度梯度产生器设计与调控。"], [" Informs six adjustable inlet flows/concentrations, the 2 × 8 mm chamber and D = 425 µm²/s. The preset converts Table 1 velocities using its 400 µm inlet width and an explicitly assumed 100 µm depth. This app uses an independent transport solver, not the paper's ANN.", " 参考其六路可调入口流量/浓度、2 × 8 mm 腔室及 D = 425 µm²/s。预设利用论文表 1 流速、400 µm 入口宽度及明确假设的 100 µm 深度换算流量。本应用使用独立输运求解器，未使用论文神经网络。"], [" Hydraulic resistance / pressure-flow circuit abstraction and its limits.", " 液压阻力与压力–流量电路类比及其适用限制。"], ["No trained weights accompanied the PDFs. No paper-reported neural-network accuracy or experimental performance is claimed for this app. Confirm predictions for the intended fluids, wetting, fabrication and operating conditions.", "上传的 PDF 未附训练权重。本应用不声称具备论文报道的神经网络精度或实验性能。请针对实际流体、润湿、加工与操作条件验证预测。"], ["The downloadable HTML contains all code, styles and calculations, without a CDN, account or calculation service. Only reference links require internet when clicked. Records are browser-specific; some browsers restrict local-file storage. Export JSON backups to move or preserve records. Existing v1 droplet backups are accepted. Import merges candidates by ID and restores valid current inputs; export first if you need a separate snapshot.", "下载的 HTML 包含全部代码、样式和计算，无需 CDN、账号或计算服务。仅点击参考文献链接时需要联网。记录保存在各自浏览器中；部分浏览器会限制本地文件存储。请导出 JSON 备份来迁移或保留记录。兼容旧版 v1 液滴备份。导入按 ID 合并候选并恢复有效的当前参数；如需单独快照，请先导出。"], ["Inverse diameter design:", "直径反算："], ["The supplied papers", "上传的参考论文"], ["Single file & records", "单文件与记录"], ["Capillary diagnostics:", "毛细诊断："], ["Resistive mixing tree:", "阻力混合树："], ["Six-inlet co-flow:", "六入口并流："], ["Programmable dilution bank:", "可编程稀释阵列："], ["T-junction low-capillary-number squeezing scaling.", "T 型交汇低毛细数挤压成滴标度关系。"], ["equivalent sphere diameter", "等体积球直径"], ["dimensionless", "无量纲"], ["versus", "相对于"], ["and inlet Re", "且入口 Re"], ["inlet Re c/d", "入口 Re（连续相/分散相）"], ["Flow-focusing ratio", "流动聚焦流量比"], ["design", "设计"], ["outputs", "输出"], ["score", "评分"], ["ASSUMPTIONS", "模型假设"], ["UNITS", "单位"], ["DropLab · Microfluidic Design Studio", "DropLab · 微流控设计工作台"]]);
+uiPairs.push(['TRANSPARENT BY DESIGN','模型透明可查'],['Channel','流道'],['gradient generator','浓度梯度产生器'],['parameter-linked dimensions and concentrations','随参数联动的尺寸与浓度'],['tree','树形'],['coflow','共流'],['bank','稀释阵列']);
+const uiDictionary=new Map(uiPairs);
+for(const [en,zh] of uiPairs)if(en.length<65&&/[a-z]/.test(en))uiDictionary.set(en.toUpperCase(),zh);
+const escapePhrase=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const uiPhrasePattern=new RegExp([...uiDictionary.keys()].sort((a,b)=>b.length-a.length).map(s=>(/^[A-Za-z0-9]/.test(s)?'(?<![A-Za-z0-9_])':'')+escapePhrase(s)+(/[A-Za-z0-9]$/.test(s)?'(?![A-Za-z0-9_])':'')).join('|'),'gi');
+const uiLowerDictionary=new Map([...uiDictionary].map(([en,zh])=>[en.toLowerCase(),zh]));
+const uiTranslationCache=new Map();
+function getLanguage(){return uiLanguage;}
+function translateText(value,language=uiLanguage){const text=String(value);if(language!=='zh'||!/[A-Za-z]/.test(text))return text;if(uiTranslationCache.has(text))return uiTranslationCache.get(text);let output=text;
+output=output.replace(/Enter exactly (\d+) values within the reservoir concentration range\./g,'请输入恰好 $1 个、位于储液池浓度范围内的数值。').replace(/Enter ([\d.eE+-]+)–([\d.eE+-]+)\./g,'请输入 $1–$2 范围内的数值。').replace(/ must be between ([\d.eE+-]+) and ([\d.eE+-]+)\./g,'应在 $1–$2 之间。').replace(/This T-junction requires d_eq > ([\d.]+) µm for positive dispersed flow\./g,'要使分散相流量为正，此 T 型结构要求 d_eq > $1 µm。').replace(/Calculated (Qc|Qd) is outside ([\d.eE+-]+)–([\d.eE+-]+) µL\/min\. Adjust the operating inputs, geometry or fluid properties\./g,'计算得到的 $1 超出 $2–$3 µL/min，请调整操作参数、几何结构或流体物性。').replace(/Required feed length exceeds the ([\d.]+) mm routing limit\. Adjust pressure, flow or geometry\./g,'所需进料长度超过 $1 mm 布线限制，请调整压力、流量或几何结构。').replace(/(\d+) example designs restored\./g,'已恢复 $1 个预设方案。').replace(/(\d+) candidates merged; current inputs restored\./g,'已合并 $1 个候选方案，并恢复当前输入。').replace(/Inlet (\d+) concentration/g,'入口 $1 浓度').replace(/Inlet (\d+) flow/g,'入口 $1 流量').replace(/\bInlet (\d+)\b/g,'入口 $1');
+output=output.replace(uiPhrasePattern,match=>uiDictionary.get(match)||uiLowerDictionary.get(match.toLowerCase()));if(uiTranslationCache.size>2500)uiTranslationCache.clear();uiTranslationCache.set(text,output);return output;}
+const uiOriginalText=new WeakMap(),uiLastText=new WeakMap(),uiOriginalAttributes=new WeakMap(),uiLastAttributes=new WeakMap();
+let uiObserver=null,uiQueued=false;
+function excludedUiNode(element){return !!element?.closest('script,style,textarea,[data-user-content],[data-no-i18n]');}
+function applyUiLanguage(){if(typeof document==='undefined')return;uiObserver?.disconnect();document.documentElement.lang=uiLanguage==='zh'?'zh-CN':'en';document.title=uiLanguage==='zh'?'DropLab · 微流控设计工作台':'DropLab · Microfluidic Design Studio';
+const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;while((node=walker.nextNode())){if(excludedUiNode(node.parentElement))continue;const current=node.data;if(!uiOriginalText.has(node)||current!==uiLastText.get(node))uiOriginalText.set(node,current);const next=translateText(uiOriginalText.get(node));if(current!==next)node.data=next;uiLastText.set(node,next);}
+for(const element of document.querySelectorAll('[aria-label],[title],[placeholder]')){if(excludedUiNode(element))continue;const original=uiOriginalAttributes.get(element)||{},last=uiLastAttributes.get(element)||{};for(const name of ['aria-label','title','placeholder']){if(!element.hasAttribute(name))continue;const current=element.getAttribute(name);if(!(name in original)||current!==last[name])original[name]=current;const next=translateText(original[name]);if(next!==current)element.setAttribute(name,next);last[name]=next;}uiOriginalAttributes.set(element,original);uiLastAttributes.set(element,last);}
+const button=document.getElementById('toggle-language');if(button){button.setAttribute('aria-pressed',String(uiLanguage==='zh'));button.setAttribute('aria-label',uiLanguage==='zh'?'Switch to English':'切换到中文');button.querySelector('[data-language-current]').textContent=uiLanguage==='zh'?'中':'EN';}
+uiObserver?.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['aria-label','title','placeholder']});}
+function setLanguage(language){uiLanguage=language==='zh'?'zh':'en';try{localStorage.setItem(UI_LANGUAGE_KEY,uiLanguage);}catch{}applyUiLanguage();}
+function initLanguage(){try{uiLanguage=localStorage.getItem(UI_LANGUAGE_KEY)==='zh'?'zh':'en';}catch{}uiObserver=new MutationObserver(()=>{if(uiQueued)return;uiQueued=true;queueMicrotask(()=>{uiQueued=false;applyUiLanguage();});});document.getElementById('toggle-language')?.addEventListener('click',()=>setLanguage(uiLanguage==='zh'?'en':'zh'));applyUiLanguage();}
+
+const MODEL_VERSION='2.1.0';
+const SCREENING=Object.freeze({ca:.1,re:10,originalCa:.01,originalRe:1});
+const defaults=Object.freeze({geometry:'t',drive:'flow',solveFor:'qd',targetDiameter:Math.cbrt(4e6/Math.PI),inletPc:7,inletPd:.65,junctionP:0,qc:6,qd:2,wc:100,wd:80,h:50,lc:10,ld:10,muc:5,mud:1,rhoc:950,rhod:1000,sigma:20,alpha:1,ffDref:80,ffRatioRef:1/6,ffExponent:1/3,ffQcRef:6});
+const limits={qc:[.000001,10000],qd:[.000001,10000],wc:[1,5000],wd:[1,5000],h:[1,5000],lc:[.01,1000],ld:[.01,1000],muc:[.001,10000],mud:[.001,10000],rhoc:[1,30000],rhod:[1,30000],sigma:[.001,200],alpha:[.1,10],ffDref:[1,5000],ffRatioRef:[.000001,1000],ffExponent:[.01,2],ffQcRef:[.000001,10000],targetDiameter:[.001,100000],inletPc:[0,10000],inletPd:[0,10000],junctionP:[0,10000]};
+const labels={qc:'Continuous-phase flow',qd:'Dispersed-phase flow',wc:'Main-channel width',wd:'Dispersed inlet width',h:'Channel depth',lc:'Continuous inlet length',ld:'Dispersed inlet length',muc:'Continuous viscosity',mud:'Dispersed viscosity',rhoc:'Continuous density',rhod:'Dispersed density',sigma:'Interfacial tension',alpha:'Geometry coefficient α',ffDref:'Reference equivalent diameter',ffRatioRef:'Reference flow ratio',ffExponent:'Flow-ratio exponent',ffQcRef:'Reference total continuous flow',targetDiameter:'Target equivalent diameter',inletPc:'Continuous inlet pressure',inletPd:'Dispersed inlet pressure',junctionP:'Junction backpressure'};
+const addedKeys=['ffDref','ffRatioRef','ffExponent','ffQcRef','drive','solveFor','targetDiameter','inletPc','inletPd','junctionP'];
+function normalizeParams(p){const q={...p};for(const k of addedKeys)if(q[k]===undefined)q[k]=defaults[k];return q;}
+function inputIsActive(p,k){if(k.startsWith('ff')&&p.geometry!=='ff')return false;if(['inletPc','inletPd','junctionP'].includes(k))return p.drive==='pressure';if(k==='targetDiameter')return p.drive==='diameter';if(k==='qc'||k==='qd')return p.drive!=='pressure'&&!(p.drive==='diameter'&&p.solveFor===k);return true;}
+// Fully developed Newtonian flow in a rigid rectangular channel; odd Fourier series to n=199.
+function resistance(mu,length,width,height){const a=Math.min(width,height),b=Math.max(width,height);let sum=0;for(let n=1;n<200;n+=2)sum+=Math.tanh(n*Math.PI*b/(2*a))/n**5;return 12*mu*length/(b*a**3*(1-192*a*sum/(Math.PI**5*b)));}
+function hydraulicResistances(p){const ff=p.geometry==='ff',w=p.wc*1e-6,h=p.h*1e-6;return {rc:resistance(p.muc*.001,p.lc*.001,ff?w/2:w,h)/(ff?2:1),rd:resistance(p.mud*.001,p.ld*.001,p.wd*1e-6,h)};}
+function resolveOperatingPoint(input){const p=normalizeParams(input),errors={};if(!['t','ff'].includes(p.geometry))errors.geometry='Choose a valid chip geometry.';if(!['flow','diameter','pressure'].includes(p.drive))errors.drive='Choose flow, target diameter or pressure input.';if(!['qc','qd'].includes(p.solveFor))errors.solveFor='Choose the phase flow to calculate.';for(const [k,[min,max]] of Object.entries(limits)){if(!inputIsActive(p,k))continue;if(typeof p[k]!=='number'||!Number.isFinite(p[k])||p[k]<min||p[k]>max)errors[k]=`${labels[k]} must be between ${min} and ${max}.`;}
+if(Object.keys(errors).length)return {valid:false,errors};const {rc,rd}=hydraulicResistances(p);
+if(p.drive==='pressure'){if(p.inletPc<=p.junctionP)errors.inletPc='Continuous inlet pressure must exceed junction backpressure.';if(p.inletPd<=p.junctionP)errors.inletPd='Dispersed inlet pressure must exceed junction backpressure.';if(Object.keys(errors).length)return {valid:false,errors};p.qc=(p.inletPc-p.junctionP)*1000/rc*60e9;p.qd=(p.inletPd-p.junctionP)*1000/rd*60e9;}
+if(p.drive==='diameter'){let q;if(p.geometry==='t'){const minimum=Math.cbrt(6*p.wc*p.wc*p.h/Math.PI);q=(Math.PI*p.targetDiameter**3/(6*p.wc*p.wc*p.h)-1)/p.alpha;if(!(q>0))errors.targetDiameter=`This T-junction requires d_eq > ${minimum.toFixed(3)} µm for positive dispersed flow.`;}else q=p.ffRatioRef*(p.targetDiameter/p.ffDref)**(1/p.ffExponent);
+if(!Number.isFinite(q)||q<=0)errors.targetDiameter=errors.targetDiameter||'The target diameter produces no finite positive flow ratio. Adjust the target or calibration.';
+if(Object.keys(errors).length)return {valid:false,errors};if(p.solveFor==='qd')p.qd=p.qc*q;else p.qc=p.qd/q;}
+for(const k of ['qc','qd']){const [min,max]=limits[k];if(!Number.isFinite(p[k])||p[k]<min||p[k]>max){const field=p.drive==='pressure'?(k==='qc'?'inletPc':'inletPd'):p.drive==='diameter'?'targetDiameter':k;errors[field]=`Calculated ${k==='qc'?'Qc':'Qd'} is outside ${min}–${max} µL/min. Adjust the operating inputs, geometry or fluid properties.`;}}
+return Object.keys(errors).length?{valid:false,errors}:{valid:true,params:p,rc,rd};}
+function validate(p){const s=resolveOperatingPoint(p);return s.valid?{}:s.errors;}
+function calculate(input){const solved=resolveOperatingPoint(input);if(!solved.valid)return {valid:false,errors:solved.errors};const p=solved.params,qc=p.qc*1e-9/60,qd=p.qd*1e-9/60,w=p.wc*1e-6,wd=p.wd*1e-6,h=p.h*1e-6,mu=p.muc*.001,mud=p.mud*.001,uc=qc/(w*h),ud=qd/(wd*h),cw=p.geometry==='ff'?w/2:w,dh=2*cw*h/(cw+h),dhd=2*wd*h/(wd+h),ca=mu*uc/(p.sigma*.001),rec=p.rhoc*uc*dh/mu,red=p.rhod*ud*dhd/mud,ratio=qd/qc,reasons=[];
+if(ca>=SCREENING.ca)reasons.push('Ca ≥ 0.1: outside the expanded application screening limit.');if(rec>=SCREENING.re||red>=SCREENING.re)reasons.push('Inlet Re ≥ 10: outside the expanded application screening limit.');if(p.geometry==='t'&&p.h>p.wc)reasons.push('Depth exceeds main width: outside this planar T-junction model.');if(p.geometry==='t'&&(p.wd>p.wc||p.wc/p.wd>4))reasons.push('Inlet width ratio is outside the T-junction range (1 ≤ wc/wd ≤ 4).');const eligible=reasons.length===0,extended=ca>=SCREENING.originalCa||rec>=SCREENING.originalRe||red>=SCREENING.originalRe,length=eligible&&p.geometry==='t'?p.wc*(1+p.alpha*ratio):null,diameter=eligible?(p.geometry==='ff'?p.ffDref*(ratio/p.ffRatioRef)**p.ffExponent:Math.cbrt(6*length*p.wc*p.h/Math.PI)):null,volume=eligible?(p.geometry==='ff'?Math.PI*diameter**3/6e6:length*p.wc*p.h/1e6):null,frequency=eligible?p.qd*1000/60/volume:null,pc=solved.rc*qc/1000,pd=solved.rd*qd/1000,warnings=[...reasons];
+if(extended)warnings.push('Expanded-range extrapolation: the app now permits Ca < 0.1 and inlet Re < 10. This does not extend the validated range of the squeezing law or an empirical flow-focusing calibration. Verify the breakup regime and size experimentally.');
+if(p.drive==='pressure')warnings.push('Pressure-driven inlet estimate: Q = (Pin − Pj)/R. Pj defaults to 0 kPa gauge and must represent the actual junction backpressure. Rigid, fully developed single-phase inlet losses only; downstream two-phase resistance, junction losses, capillary entry/pressure jumps, tubing and PDMS deformation are excluded.');
+if(p.drive==='diameter')warnings.push('Inverse size design solves the same forward model for one unknown phase flow. Diameter means equivalent-volume sphere diameter, not T-junction axial length or confined transverse width. Matching a target algebraically is not experimental validation.');
+if(p.geometry==='ff'){warnings.push('Reference-point power law. Default coefficients are illustrative, not measured. Geometry and fluid-property effects on size are not modeled. Inverse and pressure-derived estimates retain this limitation.');if(Math.abs(p.qc-p.ffQcRef)>1e-9)warnings.push('Qc differs from its reference: size is an empirical extrapolation.');warnings.push('Flow focusing: Qc is total flow in two equal-pressure symmetric continuous inlets. wc is their summed width and lc is one branch length. Each side carries Qc/2; its resistance is calculated using wc/2.');}
+if(eligible&&p.geometry==='t'&&!extended)warnings.push('Original low-Ca screening passed. Confirm squeezing and preferential continuous-phase wall wetting experimentally.');if(ratio>2||ratio<.1)warnings.push('Extreme flow ratio: verify stable breakup experimentally.');return {valid:true,eligible,extended,params:p,qc:p.qc,qd:p.qd,ratio,total:p.qc+p.qd,fraction:p.qd/(p.qc+p.qd),uc:uc*1000,ud:ud*1000,dh:dh*1e6,ca,rec,red,viscosityRatio:p.mud/p.muc,pc,pd,rc:solved.rc,rd:solved.rd,length,volume,diameter,frequency,targetResidual:p.drive==='diameter'&&diameter!==null?diameter-p.targetDiameter:null,warnings,reasons};}
+const resultFor=calculate;
+function fmt(n,d=2){if(n===null||n===undefined||!Number.isFinite(n))return '—';if(n!==0&&(Math.abs(n)<.001||Math.abs(n)>=1e6))return n.toExponential(2);return n.toLocaleString('en-US',{maximumFractionDigits:d,minimumFractionDigits:d});}
+
+
+const PRESET_VERSION='2026-11-05-v3';
+const makePreset=(key,name,note,overrides={})=>({id:`droplab-preset-${overrides.geometry==='ff'?'2026-11-02-v2':'2026-11-02-v1'}-${key}`,name,note,sample:true,params:{...defaults,...overrides}});
+const PRESETS=[
+makePreset('a','Small T-junction','60 × 30 µm main channel. Model screening passed; not experimentally validated.',{wc:60,wd:50,h:30,qc:1.5,qd:.3}),
+makePreset('b','Reference T-junction','100 × 50 µm reference geometry. Model screening passed; not experimentally validated.'),
+makePreset('c','Higher-frequency T-junction','80 × 40 µm main channel. A calculated example, not experimentally validated.',{wc:80,wd:60,h:40,qc:6,qd:1.5}),
+makePreset('d','Larger-volume T-junction','150 × 75 µm main channel. A calculated example, not experimentally validated.',{wc:150,wd:100,h:75,qc:9,qd:3}),
+makePreset('ff-a','Flow-focusing reference','Each continuous inlet: 3 µL/min, 100 µm wide. Reference point and exponent are illustrative, not measured; calibrate experimentally.',{geometry:'ff',wc:200,wd:60,h:50,qc:6,qd:1}),
+makePreset('ff-b','Flow-focusing low flow','Each continuous inlet: 2 µL/min, 80 µm wide. Reference point and exponent are illustrative, not measured; calibrate experimentally.',{geometry:'ff',wc:160,wd:40,h:40,qc:4,qd:.5})];
+function mergePresets(records,selected,created=new Date().toISOString(),capacity=40,catalog=PRESETS){const ids=new Set(records.map(r=>r.id)),missing=catalog.filter(p=>!ids.has(p.id)),additions=missing.slice(0,Math.max(0,capacity-records.length)).map(p=>({...p,params:{...p.params},created})),merged=[...records,...additions],valid=new Set(merged.map(r=>r.id)),next=[...new Set(selected.filter(id=>valid.has(id)))].slice(0,4);for(const r of [...additions.filter(r=>r.params.geometry==='ff'),...additions.filter(r=>r.params.geometry!=='ff')])if(next.length<4)next.push(r.id);return {records:merged,selected:next,added:additions.length,remaining:missing.length-additions.length};}
+
+
+// One physical scale for all transverse dimensions and the predicted droplet.
+// Inlet lengths are broken/abbreviated; FF sphere panel is not a downstream channel.
+function diagramLayout(p,r){
+  if(r.valid&&r.params)p=r.params;
+  if(!r.valid)return null;
+  const t=p.geometry==='t', mainUm=t?p.wc:Math.max(p.wd,p.wc/2), sideUm=t?p.wd:p.wc/2;
+  const size=r.eligible?(t?r.length:r.diameter):0;
+  const scale=Math.min(.65,90/Math.max(mainUm,sideUm),60/p.h,(t?260:130)/Math.max(size,1));
+  const target=75/scale,base=10**Math.floor(Math.log10(target));
+  const rulerUm=[1,2,5,10].map(n=>n*base).filter(n=>n<=target).at(-1)||base;
+  return {t,scale,mainUm,sideUm,main:mainUm*scale,side:sideUm*scale,depth:p.h*scale,sizeUm:size,size:size*scale,rulerUm,ruler:rulerUm*scale};
+}
+const ink='#6b8561',line='#9bb494',fluid='#edf5eb',drop='#e5baa0';
+const text=(x,y,s,extra='')=>`<text x="${x}" y="${y}" fill="${ink}" ${extra.includes('font-size=')?'':'font-size="11"'} ${extra}>${s}</text>`;
+const dim=(x1,y1,x2,y2)=>`<path d="M${x1} ${y1}L${x2} ${y2}" stroke="#ae967c" stroke-width="1"/><path d="M${x1} ${y1-4}V${y1+4}M${x2} ${y2-4}V${y2+4}" stroke="#ae967c"/>`;
+function diagramSvg(p,r){
+  if(r.valid&&r.params)p=r.params;
+  const g=diagramLayout(p,r);
+  if(!g)return `<svg viewBox="0 0 640 340" role="img" aria-label="Invalid parameters; schematic cleared">${text(320,170,'Correct the parameters to update the schematic','text-anchor="middle"')}</svg>`;
+  const {t,scale:s,main:w,side:v,depth:h}=g,x=220,y=150,l=30,edge=610,top=y-w/2,bottom=y+w/2;
+  const defs=`<defs><marker id="flow-arrow" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L6 3L0 6" fill="#7ca58c"/></marker></defs>`;
+  const speed=u=>Math.min(8,Math.max(.3,50/Math.max(u,.01))).toFixed(3);
+  const trace=(d,u,c='#7ca58c')=>`<path class="flow-trace" d="${d}" stroke="${c}" stroke-width="1.4" stroke-dasharray="5 5" marker-end="url(#flow-arrow)" style="animation-duration:${speed(u)}s"/>`;
+  let structure='',droplets='',labels='';
+  if(t){
+    structure=`<path data-main-width-um="${p.wc}" data-main-width-px="${w}" data-side-width-px="${v}" d="M${l} ${top}H${x-v/2}V44H${x+v/2}V${top}H${edge}V${bottom}H${l}Z" fill="${fluid}" stroke="${line}" stroke-width="1.5"/>
+      <path d="M${x-v*.28} 44H${x+v*.28}V${y-5}Q${x+v*.28} ${y+8} ${x+v*.5+15} ${y+8}" fill="none" stroke="${drop}" stroke-width="${Math.max(2,v*.45)}"/>
+      ${trace(`M50 ${y}H${x-v/2-10}`,r.uc)}${trace(`M${x} 65V${top-10}`,r.ud,'#c28f75')}`;
+    labels=text(35,top-17,`Qc = ${fmt(p.qc)} μL/min`)+text(x+v/2+14,60,`Qd = ${fmt(p.qd)} μL/min`)+text(35,bottom+23,`wc = ${fmt(p.wc,0)} μm`)+text(x,32,`wd = ${fmt(p.wd,0)} μm`,'text-anchor="middle"');
+    if(r.eligible){const dx=320,dy=top;
+      droplets=`<rect class="predicted-drop" data-size-kind="axial-length" data-size-um="${r.length}" data-size-px="${g.size}" x="${dx}" y="${dy}" width="${g.size}" height="${w}" rx="${Math.min(w/2,g.size/2)}" fill="${drop}" stroke="#c79879" stroke-width="1.2"/>
+       ${dim(dx,bottom+15,dx+g.size,bottom+15)}${text(dx+g.size/2,bottom+34,`L ≈ ${fmt(r.length,1)} μm`,'text-anchor="middle"')}`;
+    }else droplets=text(440,y+4,'No size estimate under these conditions','text-anchor="middle"');
+  }else{
+    // Symmetric inlet junction. No unprovided orifice/outlet dimensions are invented.
+    structure=`<path data-main-width-um="${p.wd}" data-main-width-px="${p.wd*s}" data-side-width-px="${v}" d="M${l} ${y-p.wd*s/2}H${x-v/2}V44H${x+v/2}V${y-p.wd*s/2}H305V${y+p.wd*s/2}H${x+v/2}V245H${x-v/2}V${y+p.wd*s/2}H${l}Z" fill="${fluid}" stroke="${line}" stroke-width="1.5"/>
+      <path d="M30 ${y}H275" stroke="${drop}" stroke-width="${Math.max(2,p.wd*s*.36)}"/>
+      ${trace(`M45 ${y}H180`,r.ud,'#c28f75')}${trace(`M${x} 60V${y-p.wd*s/2-10}`,r.uc)}${trace(`M${x} 228V${y+p.wd*s/2+10}`,r.uc)}
+      <path d="M327 70V240" stroke="#d9e3d0" stroke-dasharray="3 5"/>`;
+    labels=text(30,y-p.wd*s/2-16,`Qd = ${fmt(p.qd)} μL/min`)+text(x+v/2+12,57,`Qc/2 = ${fmt(p.qc/2)} μL/min`)+text(x+v/2+12,239,`wc/2 = ${fmt(p.wc/2,0)} μm`)+text(30,y+p.wd*s/2+22,`wd = ${fmt(p.wd,0)} μm`);
+    if(r.eligible){const cx=465,cy=145,rad=g.size/2;
+      droplets=`<circle class="predicted-drop" data-size-kind="equivalent-sphere-diameter" data-size-um="${r.diameter}" data-size-px="${g.size}" cx="${cx}" cy="${cy}" r="${rad}" fill="${drop}" stroke="#c79879" stroke-width="1.2"/>
+      ${dim(cx-rad,cy+rad+17,cx+rad,cy+rad+17)}${text(cx,cy+rad+36,`d_eq ≈ ${fmt(r.diameter,1)} μm`,'text-anchor="middle"')}`;
+    }else droplets=text(465,145,'No size estimate under these conditions','text-anchor="middle"');
+    labels+=text(465,55,'Equivalent-volume sphere','text-anchor="middle"')+text(465,232,'Unconfined; outlet shape not modeled','text-anchor="middle" font-size="10"');
+  }
+  const sectionW=(t?p.wc:p.wc/2)*s,sectionX=452;
+  const section=`${text(448,264,t?'Main cross-section':'One continuous inlet cross-section')}<rect data-depth-um="${p.h}" data-depth-px="${h}" data-section-width-px="${sectionW}" x="${sectionX}" y="275" width="${sectionW}" height="${h}" fill="${fluid}" stroke="${line}"/><text x="${sectionX+sectionW+8}" y="${280+h/2}" fill="${ink}" font-size="10">h=${fmt(p.h,0)} μm</text>`;
+  const ruler=`<path d="M30 294H${30+g.ruler}M30 290V298M${30+g.ruler} 290V298" stroke="${ink}" stroke-width="1.5"/>${text(30,315,`${fmt(g.rulerUm,0)} μm · same scale`)}${text(30,335,`Inlet lengths abbreviated：ℓc=${fmt(p.lc)} mm；ℓd=${fmt(p.ld)} mm`,'font-size="10"')}`;
+  return `<svg viewBox="0 0 640 350" role="img" data-scale="${s}" aria-label="${t?'T-junction':'Flow focusing'} parameter-linked schematic, ${r.eligible?(t?'axial length '+fmt(r.length,1):'equivalent diameter '+fmt(r.diameter,1))+' µm':'size model unavailable'}. Cross-section shows depth.">${defs}${structure}${droplets}${labels}${section}${ruler}</svg>`;
+}
+
+
+const gradientDefaults={type:'tree',qa:3,qb:3,ca:1,cb:0,n:6,w:500,h:100,length:8,outLength:4,p1:2,p2:2,p3:2,pitchLength:4,diffusion:1000,mu:1,rho:1000,theta:35,tension:72,chamberWidth:2000,chamberLength:8,inletWidth:400,flows:[1.632,2.088,.984,.36,2.184,.672],concentrations:[.69,.77,.29,.22,.59,.083],total:6,pressure:.5,mixerLength:5,maxLength:150,profile:'linear',custom:'1, 0.9, 0.65, 0.35, 0.1, 0'};
+const inRange=(x,a,b)=>typeof x==='number'&&Number.isFinite(x)&&x>=a&&x<=b;
+function validateGradient(p){const e={},bounds={h:[5,1000],mu:[.05,100],rho:[100,3000],diffusion:[.01,20000],n:[2,12]};if(!['tree','coflow','bank'].includes(p.type))e.type='Choose a supported architecture.';
+ if(p.type!=='coflow')Object.assign(bounds,{ca:[0,10000],cb:[0,10000],w:[5,2000]});
+ if(p.type==='tree')Object.assign(bounds,{qa:[.001,1000],qb:[.001,1000],length:[.1,100],outLength:[.1,100],p1:[0,9],p2:[0,9],p3:[0,9],pitchLength:[.1,20],theta:[0,179],tension:[1,100]});
+ if(p.type==='coflow')Object.assign(bounds,{chamberWidth:[100,10000],chamberLength:[.1,100],inletWidth:[10,2000]});
+ if(p.type==='bank')Object.assign(bounds,{total:[.001,1000],pressure:[.001,1000],mixerLength:[.01,100],maxLength:[1,10000]});
+ for(const [k,[a,b]] of Object.entries(bounds))if(!inRange(p[k],a,b))e[k]=`Enter ${a}–${b}.`;
+ if(!Number.isInteger(p.n))e.n='Outlet count must be an integer.';
+ if(p.type==='tree'&&['p1','p2','p3'].some(k=>!Number.isInteger(p[k])))e.p1='Pitch counts must be integers.';
+ if(p.type==='coflow'){if(!Array.isArray(p.flows)||p.flows.length!==6||p.flows.some(x=>!inRange(x,0,1000))||p.flows.reduce((s,x)=>s+x,0)<=0)e.flows='Provide six nonnegative flows with a positive total.';if(!Array.isArray(p.concentrations)||p.concentrations.length!==6||p.concentrations.some(x=>!inRange(x,0,10000)))e.concentrations='Provide six concentrations between 0 and 10000 mM.';}
+ if(p.type==='bank'){if(p.ca===p.cb)e.ca='Reservoir concentrations must differ.';if(!['linear','geometric','custom'].includes(p.profile))e.profile='Choose a supported target profile.';if(p.profile==='geometric'&&(p.ca<=0||p.cb<=0))e.profile='Geometric endpoints must be positive.';if(p.profile==='custom'){const a=String(p.custom).split(/[\s,;]+/).filter(Boolean).map(Number);if(a.length!==p.n||a.some(x=>!Number.isFinite(x)||x<Math.min(p.ca,p.cb)||x>Math.max(p.ca,p.cb)))e.custom=`Enter exactly ${p.n} values within the reservoir concentration range.`;}}
+ return e;}
+function linearSolve(A,b){const n=b.length,m=A.map((r,i)=>[...r,b[i]]);for(let i=0;i<n;i++){let k=i;for(let j=i+1;j<n;j++)if(Math.abs(m[j][i])>Math.abs(m[k][i]))k=j;[m[i],m[k]]=[m[k],m[i]];const v=m[i][i];if(Math.abs(v)<1e-18)throw Error('Singular hydraulic network.');for(let j=i;j<=n;j++)m[i][j]/=v;for(let a=0;a<n;a++)if(a!==i){const v=m[a][i];for(let j=i;j<=n;j++)m[a][j]-=v*m[i][j];}}return m.map(r=>r[n]);}
+const flowSI=q=>q*1e-9/60,firstModeMix=(D,t,w)=>1-Math.exp(-(Math.PI**2)*D*t/w**2),average=a=>a.reduce((s,v)=>s+v,0)/a.length;
+function calculateGradient(p,resolution=120){const errors=validateGradient(p);if(Object.keys(errors).length)return {valid:false,errors};const mu=p.mu*.001,h=p.h*1e-6,D=p.diffusion*1e-12,w=p.w*1e-6,warnings=[],base={valid:true,type:p.type,warnings};
+ if(p.type==='tree'){
+ const rows=[],nodes=[],edges=[];for(let i=0;i<p.n-1;i++){const row=[];for(let j=0;j<i+2;j++){row.push(nodes.length);nodes.push({row:i,j,id:nodes.length});}rows.push(row);}
+ const ru=resistance(mu,1,w,h),ref=ru*.01;
+ for(let i=0;i<rows.length-1;i++)for(let j=0;j<rows[i].length;j++)for(const k of [j,j+1]){const length=(p.length+[p.p1,p.p2,p.p3][i%3]*p.pitchLength)*.001;edges.push({a:rows[i][j],b:rows[i+1][k],length,r:ru*length});}
+ const rout=ru*p.outLength*.001,N=nodes.length,A=Array.from({length:N},()=>Array(N).fill(0)),b=Array(N).fill(0);
+ for(const e of edges){const g=ref/e.r;A[e.a][e.a]+=g;A[e.b][e.b]+=g;A[e.a][e.b]-=g;A[e.b][e.a]-=g;}for(const id of rows.at(-1))A[id][id]+=ref/rout;b[0]=flowSI(p.qa)*ref;b[1]=flowSI(p.qb)*ref;const pressure=linearSolve(A,b),incoming=Array(N).fill(0),mass=Array(N).fill(0);incoming[0]=flowSI(p.qa);incoming[1]=flowSI(p.qb);mass[0]=incoming[0]*p.ca;mass[1]=incoming[1]*p.cb;
+ for(const e of edges)e.flow=(pressure[e.a]-pressure[e.b])/e.r;
+ for(const id of nodes.map(n=>n.id).sort((a,b)=>pressure[b]-pressure[a])){nodes[id].pressure=pressure[id];nodes[id].concentration=incoming[id]>0?mass[id]/incoming[id]:0;for(const e of edges){const from=e.flow>=0?e.a:e.b,to=e.flow>=0?e.b:e.a;if(from===id){incoming[to]+=Math.abs(e.flow);mass[to]+=Math.abs(e.flow)*nodes[id].concentration;}}}
+ const outlets=rows.at(-1).map((id,i)=>({index:i+1,flow:pressure[id]/rout*60e9,c:nodes[id].concentration})),total=p.qa+p.qb,volume=edges.filter(e=>Math.abs(e.flow)>flowSI(total)*1e-10).reduce((s,e)=>s+e.length*w*h,0)+p.n*p.outLength*.001*w*h,residence=volume/flowSI(total),mixing=firstModeMix(D,residence,w),maxFlow=Math.max(flowSI(p.qa),flowSI(p.qb),...edges.map(e=>Math.abs(e.flow))),re=p.rho*maxFlow/(w*h)*2*w*h/(w+h)/mu,capillary=2*p.tension*.001*Math.cos(p.theta*Math.PI/180)*(1/w+1/h),testLength=(p.length+p.p1*p.pitchLength)*.001,fillTime=capillary>0?ru*w*h*testLength**2/(2*capillary):null;
+ if(edges.some(e=>e.flow<-flowSI(total)*1e-9))warnings.push('Some branches reverse relative to the drawn rows; solute follows the solved pressure direction.');warnings.push('Steady imposed-flow resistor network with perfectly mixed nodes. The diffusion score is a first-mode screening proxy; outlet means are not corrected for incomplete mixing.','Capillary pressure and fill time describe one isolated channel with uniform wall wetting, not transient network filling or synchronized fronts.');if(mixing<.9)warnings.push('Diffusion screening is below 90%. Verify local mixing with CFD or dye experiments.');if(re>=1)warnings.push('Re ≥ 1: validate the fully developed low-inertia hydraulic approximation.');return {...base,rows,nodes,edges,outlets,total,residence,mixing,re,pressure:Math.max(pressure[0],pressure[1])/1000,mean:(p.qa*p.ca+p.qb*p.cb)/total,volume:volume*1e9,capillary:capillary/1000,fillTime,conservation:{flow:outlets.reduce((s,o)=>s+o.flow,0)-total,solute:outlets.reduce((s,o)=>s+o.flow*o.c,0)-(p.qa*p.ca+p.qb*p.cb)}};
+ }
+ if(p.type==='coflow'){
+ const W=p.chamberWidth*1e-6,L=p.chamberLength*.001,total=p.flows.reduce((s,v)=>s+v,0),U=flowSI(total)/(W*h),residence=L/U,ny=Math.max(24,Math.floor(resolution)),nx=80,dy=W/ny,dt=residence/nx,lambda=D*dt/dy**2,bands=[0];for(const f of p.flows)bands.push(bands.at(-1)+f/total);bands[6]=1;
+ const initial=Array.from({length:ny},(_,j)=>{let c=0;for(let k=0;k<6;k++)c+=Math.max(0,Math.min((j+1)/ny,bands[k+1])-Math.max(j/ny,bands[k]))*ny*p.concentrations[k];return c;}),grid=[initial],diag=Array(ny).fill(1+2*lambda),cp=Array(ny).fill(0),den=Array(ny);diag[0]=diag[ny-1]=1+lambda;den[0]=diag[0];cp[0]=-lambda/den[0];for(let j=1;j<ny;j++){den[j]=diag[j]+lambda*cp[j-1];cp[j]=j<ny-1?-lambda/den[j]:0;}
+ for(let x=1;x<=nx;x++){const prev=grid.at(-1),dp=Array(ny),v=Array(ny);dp[0]=prev[0]/den[0];for(let j=1;j<ny;j++)dp[j]=(prev[j]+lambda*dp[j-1])/den[j];v[ny-1]=dp[ny-1];for(let j=ny-2;j>=0;j--)v[j]=dp[j]-cp[j]*v[j+1];grid.push(v);}
+ const outlet=grid.at(-1),mean=average(initial),sd=a=>Math.sqrt(average(a.map(c=>(c-mean)**2))),sd0=sd(initial),mixing=sd0>1e-12?1-sd(outlet)/sd0:1,outlets=Array.from({length:p.n},(_,i)=>{let c=0;for(let j=0;j<ny;j++)c+=Math.max(0,Math.min((i+1)/p.n,(j+1)/ny)-Math.max(i/p.n,j/ny))*p.n*outlet[j];return {index:i+1,flow:total/p.n,c};}),re=p.rho*U*2*W*h/(W+h)/mu;
+ warnings.push('Plug-flow advection with transverse diffusion, no-flux side walls, and no axial diffusion. A conservative implicit finite-volume solver allocates inlet bands by flow fraction.','Sampling bins are mathematical regions in one chamber, not fabricated outlet branches. The detailed inlet manifold and inlet pressure losses are excluded.');if(re>=1)warnings.push('Re ≥ 1: validate inlet development and the uniform axial velocity assumption.');if(U*L/D<10)warnings.push('Axial Peclet number is below 10; neglecting axial diffusion may be inappropriate.');return {...base,outlets,total,mean,residence,mixing,re,pressure:resistance(mu,L,W,h)*flowSI(total)/1000,pe:U*W/D,velocity:U*1000,grid,initial,outlet,bands,ny,nx,volume:W*h*L*1e9,conservation:{flow:0,solute:(average(outlet)-mean)*total}};
+ }
+ const target=p.profile==='custom'?String(p.custom).split(/[\s,;]+/).filter(Boolean).map(Number):Array.from({length:p.n},(_,i)=>p.profile==='geometric'?p.ca*(p.cb/p.ca)**(i/(p.n-1)):p.ca+(p.cb-p.ca)*i/(p.n-1)),q=flowSI(p.total/p.n),ru=resistance(mu,1,w,h),rmix=ru*p.mixerLength*.001,head=p.pressure*1000-rmix*q;
+ if(head<=0)return {valid:false,errors:{pressure:'Insufficient supply pressure for the requested mixer flow. Increase pressure or channel size, or reduce flow.'}};
+ const outlets=target.map((c,i)=>{const f=(c-p.cb)/(p.ca-p.cb),qa=q*f,qb=q*(1-f);return {index:i+1,c,target:c,flow:p.total/p.n,f,qa:qa*60e9,qb:qb*60e9,la:f>1e-12?head/(qa*ru)*1000:null,lb:1-f>1e-12?head/(qb*ru)*1000:null};}),maxLength=Math.max(...outlets.flatMap(o=>[o.la,o.lb]).filter(x=>x!==null)),residence=w*h*p.mixerLength*.001/q,mixing=firstModeMix(D,residence,w),re=p.rho*q/(w*h)*2*w*h/(w+h)/mu,actual=outlets.map(o=>{const a=o.la===null?0:head/(ru*o.la*.001),b=o.lb===null?0:head/(ru*o.lb*.001);return (a*p.ca+b*p.cb)/(a+b);}),rmse=Math.sqrt(average(actual.map((v,i)=>(v-target[i])**2)));
+ if(maxLength>p.maxLength)warnings.push(`Required feed length exceeds the ${p.maxLength} mm routing limit. Adjust pressure, flow or geometry.`);warnings.push('Inverse resistance sizing assumes two ideal equal-pressure buses and ambient outlets. Bus, bend and junction losses and fabrication tolerances are excluded; zero-fraction feeds are closed.','Target agreement assumes complete mixing. RMSE is an ideal algebraic forward check, not experimental accuracy. The diffusion score independently screens the mixer.');if(mixing<.9)warnings.push('Diffusion screening is below 90%. Increase mixer length or reduce flow.');if(re>=1)warnings.push('Re ≥ 1: verify the low-inertia hydraulic approximation.');return {...base,outlets,total:p.total,mean:average(target),pressure:p.pressure,residence,mixing,re,maxLength,rmse,feasible:maxLength<=p.maxLength,stock:outlets.reduce((s,o)=>s+o.qa,0),diluent:outlets.reduce((s,o)=>s+o.qb,0),head:head/1000,conservation:{flow:outlets.reduce((s,o)=>s+o.flow,0)-p.total,solute:outlets.reduce((s,o)=>s+o.flow*o.c,0)-average(target)*p.total}};
+}
+const GRADIENT_PRESETS=[
+{id:'gradient-tree-6',name:'Six-outlet mixing tree',note:'Inspired by the 2026 paper geometry range: 500 × 100 µm, base length 8 mm, 2 pitches per row. This steady imposed-flow model is not the published capillary CFD or ANN.',params:{...gradientDefaults}},
+{id:'gradient-tree-8',name:'Eight-outlet slow-flow tree',note:'Lower flow and longer mixing paths. A calculated example; experimental validation is required.',params:{...gradientDefaults,n:8,qa:1,qb:1,w:300,p1:3,p2:3,p3:3}},
+{id:'gradient-coflow-paper',name:'Six-inlet paper example',note:'2022 Table 1 velocities converted using its 400 µm inlet width and an assumed 100 µm depth. Concentrations and 2 × 8 mm chamber follow the paper. Independent plug-flow diffusion model.',params:{...gradientDefaults,type:'coflow',diffusion:425}},
+{id:'gradient-bank-custom',name:'Programmable six-level bank',note:'Targets 1, 0.9, 0.65, 0.35, 0.1, 0 mM, inspired by the 2026 target vector. Independent inverse resistance design, not a reproduction of the published chip.',params:{...gradientDefaults,type:'bank',profile:'custom',w:50,h:50,total:3,pressure:.5}}
+];
+
+
+function concentrationColor(c,min=0,max=1){const f=Math.max(0,Math.min(1,(c-min)/(max-min||1))),a=[224,237,228],b=[130,70,122];return `rgb(${a.map((v,i)=>Math.round(v+(b[i]-v)*f)).join(',')})`;}
+const gText=(x,y,t,extra='')=>`<text x="${x}" y="${y}" fill="#50655a" ${extra.includes('font-size=')?'':'font-size="11"'} ${extra}>${t}</text>`;
+function gradientDiagram(p,r){if(!r.valid)return '<svg viewBox="0 0 720 430" role="img" aria-label="Invalid design"><text x="360" y="180" text-anchor="middle" fill="#64776c">Correct the inputs to update the schematic.</text></svg>';
+const low=p.type==='coflow'?Math.min(...p.concentrations):Math.min(p.ca,p.cb),high=p.type==='coflow'?Math.max(...p.concentrations):Math.max(p.ca,p.cb),col=c=>concentrationColor(c,low,high),stroke=Math.max(2,Math.min(12,(p.type==='coflow'?p.inletWidth:p.w)/70));let s='';
+if(p.type==='tree'){
+ const xy=id=>{const n=r.nodes[id];return {x:360+(n.j-(n.row+1)/2)*Math.min(83,540/(p.n-1)),y:45+n.row*210/(p.n-2||1)};};
+ for(const e of r.edges){const a=xy(e.a),b=xy(e.b),pitch=[p.p1,p.p2,p.p3][r.nodes[e.a].row%3],pts=[a];for(let k=1;k<=pitch*2;k++){const f=k/(pitch*2+1);pts.push({x:a.x+(b.x-a.x)*f+(k%2?7:-7),y:a.y+(b.y-a.y)*f});}pts.push(b);const d=pts.map((v,i)=>`${i?'L':'M'}${v.x} ${v.y}`).join('');s+=`<path d="${d}" fill="none" stroke="#d4ded4" stroke-width="${stroke+3}" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="${col(r.nodes[e.flow>=0?e.a:e.b].concentration)}" stroke-width="${stroke}" stroke-linejoin="round"><title>${fmt(e.flow*60e9,3)} µL/min (signed down the rows), ${fmt(e.length*1000,1)} mm</title></path>`;}
+ for(const n of r.nodes){const a=xy(n.id);s+=`<circle cx="${a.x}" cy="${a.y}" r="${Math.max(4,stroke*.7)}" fill="${col(n.concentration)}" stroke="#fff"><title>${fmt(n.concentration,4)} mM, ${fmt(n.pressure/1000,4)} kPa</title></circle>`;}
+ const a=xy(0),b=xy(1);s+=gText(a.x,24,`A · ${fmt(p.qa)} µL/min`,'text-anchor="end"')+gText(b.x,24,`B · ${fmt(p.qb)} µL/min`,'text-anchor="start"');
+ for(const o of r.outlets){const a=xy(r.rows.at(-1)[o.index-1]),tail=10+Math.min(15,p.outLength);s+=`<path d="M${a.x} ${a.y}v${tail}" stroke="${col(o.c)}" stroke-width="${stroke}"><title>Outlet segment ${p.outLength} mm</title></path>`+gText(a.x,294,String(o.index),'text-anchor="middle"')+gText(a.x,311,fmt(o.c,3),'text-anchor="middle"');}
+ s+=gText(25,330,`Row lengths = ${p.length} + ${p.pitchLength} × pitch count (mm); P = ${p.p1} / ${p.p2} / ${p.p3}, repeated.`,'font-size="10"');
+}
+if(p.type==='coflow'){
+ const aw=520,ah=Math.max(72,Math.min(208,aw*p.chamberWidth/(p.chamberLength*1000))),x=115,y=75;
+ for(let ix=0;ix<r.grid.length;ix+=2)for(let j=0;j<r.ny;j+=2)s+=`<rect x="${x+ix/r.grid.length*aw}" y="${y+j/r.ny*ah}" width="${Math.min(2,r.grid.length-ix)/r.grid.length*aw+.2}" height="${2/r.ny*ah+.2}" fill="${col(r.grid[ix][j])}"/>`;
+ s+=`<rect x="${x}" y="${y}" width="${aw}" height="${ah}" fill="none" stroke="#8fa293"/>`;
+ for(let i=0;i<6;i++){const yy=y+(r.bands[i]+r.bands[i+1])/2*ah;if(p.flows[i]>0)s+=`<path d="M40 ${yy}H${x}" stroke="${col(p.concentrations[i])}" stroke-width="${Math.max(1,Math.min(p.inletWidth*.035,(r.bands[i+1]-r.bands[i])*ah*.7))}"/>`;s+=gText(30,yy+3,String(i+1),'text-anchor="end"');}
+ s+=gText(x,49,'6 inlets → flow-weighted bands → advection + diffusion')+gText(x+aw/2,y+ah+25,`${fmt(p.chamberLength)} mm · mean residence ${fmt(r.residence)} s`,'text-anchor="middle"')+gText(x+aw+8,y+ah/2,`${fmt(p.chamberWidth,0)} µm`,'font-size="10"')+gText(25,330,`Inlet width ${p.inletWidth} µm. Aspect ratio bounded for legibility; sampling bins are not physical outlets.`,'font-size="10"');
+}
+if(p.type==='bank'){
+ s+=`<path d="M65 55H660" stroke="${col(p.ca)}" stroke-width="8"/><path d="M65 105H660" stroke="${col(p.cb)}" stroke-width="8"/>`+gText(25,59,'A')+gText(25,109,'B');
+ for(const o of r.outlets){const xx=90+(o.index-1)*540/(p.n-1);for(const [len,from,off,c] of [[o.la,55,-9,p.ca],[o.lb,105,9,p.cb]])if(len!==null){const b=Math.min(6,Math.max(1,Math.ceil(len/20))),points=[`${xx+off},${from}`];for(let j=1;j<=b*2;j++)points.push(`${xx+off+(j%2?5:-5)},${from+(190-from)*j/(b*2+1)}`);points.push(`${xx},195`);s+=`<polyline points="${points.join(' ')}" fill="none" stroke="${col(c)}" stroke-width="${Math.min(7,stroke)}"/>`;}
+ s+=`<path d="M${xx} 195V247" stroke="${col(o.c)}" stroke-width="${Math.min(12,stroke+2)}"/><circle cx="${xx}" cy="250" r="9" fill="${col(o.c)}"/>`+gText(xx,277,`${fmt(o.c,2)} mM`,'text-anchor="middle"')+gText(xx,299,`${o.la===null?'closed':fmt(o.la,1)} / ${o.lb===null?'closed':fmt(o.lb,1)}`,`text-anchor="middle" font-size="${p.n>8?7:9}"`);}
+ s+=gText(25,330,'Feed lengths A / B (mm). Meanders indicate resistance; routing is illustrative, not a fabrication mask.','font-size="10"');
+}
+const sw=Math.min(120,(p.type==='coflow'?p.chamberWidth:p.w)*.13),sh=Math.max(2,Math.min(45,p.h*.2));s+=gText(25,359,`Channel ${p.type==='coflow'?p.chamberWidth:p.w} × ${p.h} µm; depth section at right.`,'font-size="10"')+`<rect x="540" y="342" width="${sw}" height="${sh}" fill="#e2ece2" stroke="#839786"/>`+gText(540+sw+6,354,`h ${p.h}`,'font-size="9"');s+=`<defs><linearGradient id="concentration-key"><stop stop-color="${col(low)}"/><stop offset="1" stop-color="${col(high)}"/></linearGradient></defs><rect x="25" y="391" width="140" height="6" rx="3" fill="url(#concentration-key)"/>`+gText(25,414,`${fmt(low,3)} mM`,'font-size="10"')+gText(165,414,`${fmt(high,3)} mM`,'text-anchor="end" font-size="10"')+gText(210,398,'Concentration color scale · lengths abbreviated','font-size="10"');return `<svg viewBox="0 0 720 430" role="img" aria-label="${p.type} gradient generator, ${p.n} outputs, parameter-linked dimensions and concentrations">${s}</svg>`;
+}
+
+
+
+
+
+
+
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],KEY2='droplab.workspace.v2';
+const clone=v=>JSON.parse(JSON.stringify(v)),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),uid=()=>globalThis.crypto?.randomUUID?.()||`design-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+const driveName=p=>({flow:'Flow input',diameter:'Target diameter',pressure:'Pressure input'}[p.drive||'flow']);
+const architectureName=p=>p.geometry?(p.geometry==='t'?'T-junction':'Flow focusing'):({tree:'Resistive mixing tree',coflow:'Six-inlet co-flow',bank:'Programmable dilution bank'}[p.type]||'Gradient');
+let mode='droplet',designs={droplet:clone(defaults),gradient:clone(gradientDefaults)},records=[],selections={droplet:[],gradient:[]},candidateMode='droplet',editingId=null,toastTimer;
+const active=()=>designs[mode],compute=(p,m=mode)=>m==='droplet'?calculate(p):calculateGradient(p);
+function notify(s){const n=$('#toast'),parent=$('dialog[open]')||document.body;if(n.parentElement!==parent)parent.append(n);n.textContent=s;n.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>n.classList.remove('visible'),4500);}
+function cleanDrop(p){if(!p||typeof p!=='object')return null;const q=normalizeParams(p),out={geometry:q.geometry,drive:q.drive,solveFor:q.solveFor};for(const k of Object.keys(limits))out[k]=!inputIsActive(q,k)&&!Number.isFinite(q[k])?defaults[k]:q[k];const r=calculate(out);return r.valid?r.params:null;}
+function cleanGrad(p){if(!p||typeof p!=='object'||!['tree','coflow','bank'].includes(p.type))return null;const q={};for(const k of Object.keys(gradientDefaults))q[k]=p[k]===undefined?clone(gradientDefaults[k]):p[k];return Object.keys(validateGradient(q)).length?null:clone(q);}
+function cleanCandidate(r){if(!r||typeof r.name!=='string'||!r.name.trim())return null;const m=r.mode||(r.params?.geometry?'droplet':'gradient');if(!['droplet','gradient'].includes(m))return null;const p=m==='droplet'?cleanDrop(r.params):cleanGrad(r.params);if(!p||!compute(p,m).valid)return null;return {id:typeof r.id==='string'?r.id.slice(0,120):uid(),mode:m,name:r.name.trim().slice(0,80),note:typeof r.note==='string'?r.note.slice(0,1200):'',params:p,sample:r.sample===true,created:typeof r.created==='string'?r.created:new Date().toISOString()};}
+const examples=()=>[...PRESETS.map(r=>({...r,mode:'droplet'})),...GRADIENT_PRESETS.map(r=>({...r,mode:'gradient',sample:true}))];
+function seed(){let added=0;for(const r of examples())if(!records.some(v=>v.id===r.id)&&records.length<80){records.push({...clone(r),created:new Date().toISOString()});added++;}for(const m of ['droplet','gradient'])if(!selections[m].length){let order=records.filter(r=>r.mode===m);if(m==='droplet')order=[...order.filter(r=>r.params.geometry==='ff'),...order.filter(r=>r.params.geometry==='t')];selections[m]=order.slice(0,4).map(r=>r.id);}return added;}
+function initialize(){try{const raw=localStorage.getItem(KEY2);if(raw){const d=JSON.parse(raw);if(d.schema!==2||!Array.isArray(d.records))throw Error();designs={droplet:cleanDrop(d.designs?.droplet)||clone(defaults),gradient:cleanGrad(d.designs?.gradient)||clone(gradientDefaults)};records=d.records.map(cleanCandidate).filter(Boolean).slice(0,80);mode=d.mode==='gradient'?'gradient':'droplet';for(const m of ['droplet','gradient'])selections[m]=Array.isArray(d.selections?.[m])?[...new Set(d.selections[m])].filter(id=>records.some(r=>r.id===id&&r.mode===m)).slice(0,4):[];}else{const old=localStorage.getItem('droplab.workspace.v1');if(old){const d=JSON.parse(old);designs.droplet=cleanDrop(d.params)||clone(defaults);records=(d.records||[]).map(r=>cleanCandidate({...r,mode:'droplet'})).filter(Boolean);selections.droplet=(d.selected||[]).filter(id=>records.some(r=>r.id===id)).slice(0,4);for(const e of examples()){const i=records.findIndex(r=>r.id===e.id&&r.sample);if(i>=0)records[i]={...records[i],name:e.name,note:e.note};}}seed();}}catch{seed();notify('Stored data could not be read. Defaults are loaded; import a JSON backup to recover records.');}}
+function persist(){let ok=true;try{localStorage.setItem(KEY2,JSON.stringify({schema:2,version:'2.2',mode,designs:{droplet:cleanDrop(designs.droplet)||clone(defaults),gradient:cleanGrad(designs.gradient)||clone(gradientDefaults)},records,selections}));}catch{ok=false;}$('#storage-status').innerHTML=`<i></i> ${ok?'Saved in this browser':'Storage unavailable · export backup'}`;$('#candidate-count').textContent=records.length;}
+const field=(k,l,u='',step='any',v=active()[k])=>`<label class="field">${esc(l)}<span class="input-wrap"><input type="number" name="${k}" value="${Number.isFinite(v)?v:''}" step="${step}" aria-label="${esc(l)}" aria-describedby="error-${k}"><span class="unit">${u}</span></span><small class="field-error" id="error-${k}"></small></label>`;
+const group=(l,fs)=>`<div class="group-label">${l}</div><div class="field-grid">${fs.join('')}</div>`;
+function renderForm(){const p=active(),isDrop=mode==='droplet';$('#breadcrumb').textContent=$('#page-title').textContent=isDrop?'Droplet generator':'Concentration gradient';$('#page-subtitle').textContent=isDrop?'Turn flow rates and channel dimensions into a considered starting point.':'Shape a concentration profile. Explore the flow, geometry and diffusion behind it.';$$('[data-mode]').forEach(b=>{b.classList.toggle('active',b.dataset.mode===mode);b.setAttribute('aria-pressed',b.dataset.mode===mode);});
+const opts=isDrop?[['t','T-junction','Squeezing model'],['ff','Flow focusing','Reference power law']]:[['tree','Mixing tree','Hydraulic network'],['coflow','Six-inlet co-flow','Advection + diffusion'],['bank','Dilution bank','Target to resistance']];$('#architecture-picker').innerHTML=`<div class="architecture-label">Chip architecture</div><div class="architecture-options">${opts.map(([v,t,d])=>`<button type="button" data-architecture="${v}" class="${(p.geometry||p.type)===v?'selected':''}" aria-pressed="${(p.geometry||p.type)===v}">${t}<small>${d}</small></button>`).join('')}</div>`;
+let s='';if(isDrop){
+s=`<div class="architecture-label">Operating mode</div><div class="architecture-options drive-options">${[['flow','Flow rates'],['diameter','Target diameter'],['pressure','Pressures']].map(([v,l])=>`<button type="button" data-drive="${v}" class="${p.drive===v?'selected':''}" aria-pressed="${p.drive===v}">${l}</button>`).join('')}</div>`;
+if(p.drive==='diameter'){
+s+=`<label class="field">Inverse design<select name="solveFor" aria-label="Flow to calculate"><option value="qd" ${p.solveFor==='qd'?'selected':''}>Calculate Qd · hold Qc</option><option value="qc" ${p.solveFor==='qc'?'selected':''}>Calculate Qc · hold Qd</option></select><small class="field-error" id="error-solveFor"></small></label>`+group('Target & known flow',[field('targetDiameter','Target equivalent diameter · d_eq','µm'),p.solveFor==='qc'?field('qd','Known dispersed flow · Qd','µL/min'):field('qc',p.geometry==='ff'?'Known total continuous flow · Qc':'Known continuous flow · Qc','µL/min')])+`<p class="small muted">d_eq is the diameter of a sphere with the same volume. It is not T-junction axial length or confined droplet width.</p>`;
+}else if(p.drive==='pressure'){
+s+=group('Inlet pressures · gauge',[field('inletPc','Continuous inlet pressure · Pc','kPa'),field('inletPd','Dispersed inlet pressure · Pd','kPa')])+`<details><summary>Junction pressure reference</summary>${field('junctionP','Junction backpressure · Pj','kPa')}<p class="small muted">Default Pj = 0 kPa gauge. Enter actual junction backpressure when known. Each inlet pressure must exceed Pj.</p></details><p class="small muted">Flows are calculated from Pin − Pj and inlet resistance. Downstream two-phase losses, capillary pressure jumps and tubing are not included.</p>`;
+}else s+=group('Flow rates',[field('qc',p.geometry==='ff'?'Continuous · total Qc':'Continuous phase · Qc','µL/min'),field('qd','Dispersed phase · Qd','µL/min')]);
+s+=`<div id="operating-result" class="operating-readout" aria-live="polite"></div>`;
+s+=group('Channel dimensions',[field('wc',p.geometry==='ff'?'Summed side widths · wc':'Main width · wc','µm'),field('wd','Dispersed inlet · wd','µm'),field('h','Common depth · h','µm'),field('lc','Continuous inlet length','mm'),field('ld','Dispersed inlet length','mm')]);
+if(p.geometry==='ff')s+=group('Empirical reference · calibrate first',[field('ffDref','Reference diameter','µm'),field('ffRatioRef','Reference Qd/Qc','ratio'),field('ffExponent','Exponent · b','—'),field('ffQcRef','Reference total Qc','µL/min')]);
+s+=`<details><summary>Fluid properties & model settings</summary><div class="field-grid">${[field('muc','Continuous viscosity','mPa·s'),field('mud','Dispersed viscosity','mPa·s'),field('rhoc','Continuous density','kg/m³'),field('rhod','Dispersed density','kg/m³'),field('sigma','Interfacial tension','mN/m'),field('alpha','T-junction coefficient · α','—')].join('')}</div></details><p class="screening-limits">Application screens: Ca &lt; 0.1 · Re_c &lt; 10 · Re_d &lt; 10.<br>Above Ca 0.01 or Re 1, size is marked as expanded-range extrapolation.</p>`;
+$('#input-help').textContent=p.geometry==='ff'?'Symmetric continuous inlets: Qc is total flow, wc is summed width, lc is one branch length. Reference coefficients need calibration.':'Immiscible Newtonian fluids, rigid channels and continuous-phase wall wetting are assumed.';
+}else{
+if(p.type==='tree')s=group('Feed conditions',[field('qa','Reservoir A flow','µL/min'),field('qb','Reservoir B flow','µL/min'),field('ca','Reservoir A concentration','mM'),field('cb','Reservoir B concentration','mM')])+group('Network geometry',[field('n','Outlet count','2–12','1'),field('w','Channel width','µm'),field('h','Channel depth','µm'),field('length','Base segment length','mm'),field('outLength','Outlet channel length','mm'),field('pitchLength','Added length per pitch','mm'),field('p1','Row pitch · P1','0–9','1'),field('p2','Row pitch · P2','0–9','1'),field('p3','Row pitch · P3','0–9','1')]);
+if(p.type==='coflow'){s=`<div class="group-label">Six inlet conditions</div><div class="inlet-table"><span>INLET</span><span>FLOW · µL/min</span><span>CONC. · mM</span>${p.flows.map((v,i)=>`<span>${i+1}</span>${field('flow'+i,'Inlet '+(i+1)+' flow','','any',v)}${field('conc'+i,'Inlet '+(i+1)+' concentration','','any',p.concentrations[i])}`).join('')}</div>`+group('Reactive chamber',[field('chamberWidth','Chamber width','µm'),field('chamberLength','Chamber length','mm'),field('h','Channel depth','µm'),field('inletWidth','Each inlet width','µm'),field('n','Outlet sampling bins','2–12','1')]);}
+if(p.type==='bank'){s=group('Target & supply',[field('ca','Reservoir A concentration','mM'),field('cb','Reservoir B concentration','mM'),field('n','Outlet count','2–12','1'),field('total','Total outlet flow','µL/min'),field('pressure','Equal supply pressure','kPa')])+`<label class="field">Target profile<select name="profile" aria-label="Target profile">${[['linear','Linear between endpoints'],['geometric','Geometric between endpoints'],['custom','Custom concentration levels']].map(([v,t])=>`<option value="${v}" ${p.profile===v?'selected':''}>${t}</option>`).join('')}</select><small class="field-error" id="error-profile"></small></label>`;if(p.profile==='custom')s+=`<label class="field">Target levels · mM<textarea name="custom" aria-label="Custom target concentrations" maxlength="1000" rows="2">${esc(p.custom)}</textarea><small class="field-error" id="error-custom"></small></label>`;s+=group('Channel & routing',[field('w','Feed / mixer width','µm'),field('h','Common depth','µm'),field('mixerLength','Mixing channel length','mm'),field('maxLength','Max routed feed length','mm')]);}
+s+=`<details open><summary>Transport & fluid properties</summary><div class="field-grid">${field('diffusion','Diffusion coefficient · D','µm²/s')}${field('mu','Dynamic viscosity','mPa·s')}${field('rho','Fluid density','kg/m³')}</div></details>`;if(p.type==='tree')s+=`<details><summary>Isolated-channel capillary screen</summary><div class="field-grid">${field('theta','Uniform contact angle','degrees')}${field('tension','Surface tension','mN/m')}</div><p class="small muted">Isolated-channel screening only; the network is driven by imposed flow.</p></details>`;$('#input-help').textContent={tree:'Steady imposed flow and perfectly mixed nodes. Width, depth, pitch and outlet count update the hydraulic network.',coflow:'Six parallel inlet bands in one chamber. Concentration mM = mol/m³. Sampling bins are mathematical regions, not splitter branches.',bank:'Targets and total flow determine feed resistance and length. Two ideal equal-pressure supply buses are assumed.'}[p.type];}
+$('#parameter-form').innerHTML=s;}
+function readForm(){const p=active();for(const el of $$('#parameter-form [name]')){const k=el.name;if(['profile','custom','solveFor'].includes(k))p[k]=el.value;else{const v=el.value.trim()===''?NaN:Number(el.value);if(k.startsWith('flow'))p.flows[Number(k.slice(4))]=v;else if(k.startsWith('conc'))p.concentrations[Number(k.slice(4))]=v;else p[k]=v;}}}
+const card=(l,v,u,n)=>`<article class="result-card"><div class="metric-label">${l}</div><div class="metric-value">${v}</div><div class="metric-unit">${u}</div><div class="metric-note">${n}</div></article>`,strip=(l,v,u='')=>`<div><span>${l}</span><strong>${v}</strong> <small>${u}</small></div>`;
+function summary(p,r){if(r.valid&&p.geometry)p=r.params;if(!r.valid)return 'Correct the highlighted inputs to generate a design summary.';if(p.geometry){let s=`${architectureName(p)} · ${driveName(p)}. Continuous / dispersed flow ${fmt(p.qc)} / ${fmt(p.qd)} µL/min (Qd/Qc ${fmt(r.ratio,3)}). ${p.geometry==='t'?'Main width':'Summed side width'} ${p.wc} µm, dispersed inlet ${p.wd} µm, depth ${p.h} µm.\n`;s+=r.eligible?`${p.geometry==='t'?'Axial length '+fmt(r.length,1)+' µm; ':''}equivalent sphere diameter ${fmt(r.diameter,1)} µm; volume ${fmt(r.volume,3)} nL; frequency ${fmt(r.frequency,1)} Hz. ${p.geometry==='t'?'Rectangular-plug size estimate; geometry coefficient requires calibration.':'Empirical reference-point estimate; illustrative coefficients require measured calibration.'}`:`Size estimate suppressed: ${r.reasons.join(' ')}`;if(p.drive==='diameter')s+=`\nTarget equivalent diameter ${fmt(p.targetDiameter,3)} µm; solved ${p.solveFor==='qc'?'continuous':'dispersed'} flow; model target residual ${fmt(r.targetResidual,6)} µm.`;if(p.drive==='pressure')s+=`\nInlet gauge pressures Pc/Pd ${fmt(p.inletPc,4)} / ${fmt(p.inletPd,4)} kPa; junction Pj ${fmt(p.junctionP,4)} kPa. Flows are inlet-resistance estimates, excluding capillary and downstream two-phase losses.`;return s+`\nApplication screens Ca < 0.1 and inlet Re < 10. ${r.extended?'Expanded-range model extrapolation.':'Within the original conservative screen.'}\nCa ${fmt(r.ca,5)}; inlet Re c/d ${fmt(r.rec,3)} / ${fmt(r.red,3)}; single-phase inlet pressure drops ${fmt(r.pc,3)} / ${fmt(r.pd,3)} kPa.`;}
+let s=`${architectureName(p)}. ${p.n} ${p.type==='coflow'?'transverse sampling bins':'outlets'}, total flow ${fmt(r.total)} µL/min, depth ${p.h} µm.\nFlow-weighted mean ${fmt(r.mean,4)} mM; residence ${fmt(r.residence)} s; ${p.type==='coflow'?'diffusion mixing':'first-mode diffusion screening'} score ${fmt(r.mixing*100,1)}%; Re ${fmt(r.re,3)}.\n`;
+if(p.type==='tree')s+=`Channels ${p.w} × ${p.h} µm; base ${p.length} mm; P1/P2/P3 ${p.p1}/${p.p2}/${p.p3}, adding ${p.pitchLength} mm each. Maximum inlet pressure ${fmt(r.pressure,4)} kPa. Isolated-channel capillary pressure ${fmt(r.capillary,3)} kPa; fill time ${r.fillTime===null?'not spontaneously wetting':fmt(r.fillTime)+' s'}. Network capillary transients are not simulated.`;
+if(p.type==='coflow')s+=`Chamber ${p.chamberWidth} µm × ${p.chamberLength} mm; mean axial speed ${fmt(r.velocity,3)} mm/s; transverse Pe ${fmt(r.pe,1)}; chamber-only pressure drop ${fmt(r.pressure,4)} kPa. Inlet velocities (mm/s): ${p.flows.map(q=>fmt(q/60/(p.inletWidth*.001*p.h*.001),3)).join(', ')}. Independent plug-flow transport solver, not the paper's ANN or detailed inlet manifold.`;
+if(p.type==='bank')s+=`Supply pressure ${fmt(p.pressure,3)} kPa; width ${p.w} µm; mixer ${p.mixerLength} mm. Stock / diluent demand ${fmt(r.stock,3)} / ${fmt(r.diluent,3)} µL/min. Longest required feed ${fmt(r.maxLength)} mm (${r.feasible?'within':'exceeds'} ${p.maxLength} mm routing limit). Ideal target forward-check RMSE ${fmt(r.rmse,6)} mM.`;
+return s+`\nOutput concentrations (mM): ${r.outlets.map(o=>fmt(o.c,4)).join(', ')}. Experimental validation is required.`;}
+function renderOperatingPoint(p,r){const box=$('#operating-result');if(!box)return;if(!r.valid){box.textContent='Operating point unavailable until the inputs are valid.';return;}box.innerHTML=`<p>${p.drive==='flow'?'Operating point':'Calculated operating point'}</p><div><span>Qc · total</span><strong>${fmt(r.qc,4)} <small>µL/min</small></strong></div><div><span>Qd</span><strong>${fmt(r.qd,4)} <small>µL/min</small></strong></div><div><span>Inlet ΔPc / ΔPd</span><strong>${fmt(r.pc,4)} / ${fmt(r.pd,4)} <small>kPa</small></strong></div><div><span>Re_c / Re_d</span><strong>${fmt(r.rec,3)} / ${fmt(r.red,3)}</strong></div>${p.drive==='diameter'?`<div><span>Target d_eq</span><strong>${fmt(p.targetDiameter,3)} <small>µm</small></strong></div>`:''}`;}
+function changeDrive(drive){if(mode!=='droplet'||!['flow','diameter','pressure'].includes(drive)||active().drive===drive)return;const p=active(),r=compute(p);if(r.valid){p.qc=r.qc;p.qd=r.qd;if(drive==='diameter'&&r.eligible)p.targetDiameter=r.diameter;if(drive==='pressure'){if(!Number.isFinite(p.junctionP)||p.junctionP<0)p.junctionP=0;p.inletPc=r.pc+p.junctionP;p.inletPd=r.pd+p.junctionP;}}else{for(const k of ['qc','qd','targetDiameter','inletPc','inletPd','junctionP'])if(!Number.isFinite(p[k]))p[k]=defaults[k];}p.drive=drive;renderForm();renderResults();persist();}
+function renderResults(){const input=active(),r=compute(input),v=r.valid,p=mode==='droplet'&&v?r.params:input;for(const el of $$('#parameter-form [name]')){const k=el.name,msg=v?'':r.errors[k]||(k.startsWith('flow')?r.errors.flows:k.startsWith('conc')?r.errors.concentrations:'')||'';el.setAttribute('aria-invalid',!!msg);const err=$('#error-'+k);if(err)err.textContent=msg;}$('#validation-alert').hidden=v;$('#validation-alert').textContent=v?'':'Correct the inputs. Results have been cleared. '+[...new Set(Object.values(r.errors))].join(' ');for(const id of ['save-candidate','export-summary','export-diagram','export-outlets'])$('#'+id).disabled=!v;$('#architecture-badge').textContent=architectureName(p);$('#schematic').innerHTML=mode==='droplet'?diagramSvg(p,r):gradientDiagram(p,r);let cs,fs;
+if(mode==='droplet'){cs=[card('Equivalent diameter · estimate',v?fmt(r.diameter,1):'—','µm',p.geometry==='t'?`T axial length ≈ ${v?fmt(r.length,1):'—'} µm`:'d = dref (q/qref)^b'),card('Drop volume · estimate',v?fmt(r.volume,3):'—','nL',p.geometry==='t'?'Rectangular plug approximation':'Unconfined equivalent sphere'),card('Generation frequency',v?fmt(r.frequency,1):'—','Hz','Dispersed volume conservation'),card('Capillary number · Ca',v?fmt(r.ca,5):'—','dimensionless','Expanded screen < 0.1')];fs=strip('Flow ratio · Qd/Qc',v?fmt(r.ratio,3):'—')+strip('Total inlet flow',v?fmt(r.total):'—','µL/min')+strip('Inlet Re · c / d',v?fmt(r.rec,3)+' / '+fmt(r.red,3):'—');}
+else{cs=[card('Mean concentration',v?fmt(r.mean,3):'—','mM','Flow-weighted across outputs'),card(p.type==='coflow'?'Diffusion mixing score':'Diffusion screening score',v?fmt(r.mixing*100,1):'—','%',p.type==='coflow'?'1 − σout / σin':'1 − exp(−π²Dt/w²)'),card('Mean residence time',v?fmt(r.residence):'—','s',p.type==='bank'?'Mixing channel only':p.type==='tree'?'Active volume / total flow':'Chamber length / mean speed'),card(p.type==='bank'?'Longest required feed':'Pressure indicator',v?fmt(p.type==='bank'?r.maxLength:r.pressure,3):'—',p.type==='bank'?'mm':'kPa',p.type==='tree'?'Largest inlet pressure':p.type==='coflow'?'Chamber-only pressure drop':v&&r.feasible?'Within routed length limit':'Routing limit exceeded')];fs=strip('Total inlet flow',v?fmt(r.total):'—','µL/min')+strip('Outputs / sampling bins',v?fmt(p.n,0):'—')+strip('Reynolds number',v?fmt(r.re,3):'—');}
+if(mode==='droplet')renderOperatingPoint(p,r);$('#results-cards').innerHTML=cs.join('');$('#flow-strip').innerHTML=fs;$('#profile-panel').hidden=mode!=='gradient';if(mode==='gradient')renderProfile(p,r);renderSensitivity(p,r);renderComparison();$('#design-summary').textContent=summary(p,r);$('#model-status').textContent=!v?'Input corrections required':mode==='droplet'?(!r.eligible?'Size model outside screening range':r.extended?'Expanded range · model extrapolation':p.geometry==='t'?'Original conservative screen passed · validate experimentally':'Empirical estimate · calibration required'):p.type==='bank'?r.feasible?'Ideal target balance solved · validate mixing and routing':'Ideal balance solved · routing limit exceeded':'Screening calculation complete · validate local transport';$('#model-warnings').innerHTML=(v?r.warnings:['Correct the inputs before using the design results.']).map(t=>`<li>${esc(t)}</li>`).join('');return r;}
+function lineChart(points,{xLabel='',yLabel='',current=null,series2=null,yMin=null,yMax=null}={}){const good=points.filter(p=>Number.isFinite(p.x)&&Number.isFinite(p.y));if(!good.length)return '<div class="chart-empty">No valid model points in this range.</div>';const xmin=Math.min(...points.map(p=>p.x)),xmax=Math.max(...points.map(p=>p.x)),all=[...good,...(series2||[]).filter(p=>Number.isFinite(p.y))],a=Math.min(...all.map(p=>p.y)),b=Math.max(...all.map(p=>p.y)),pad=(b-a)*.12||Math.abs(b)*.05||1,lo=yMin??a-pad,hi=yMax??b+pad,xx=x=>62+(x-xmin)/(xmax-xmin||1)*522,yy=y=>174-(y-lo)/(hi-lo||1)*142;let s='';for(let i=0;i<5;i++){const y=lo+(hi-lo)*i/4,x=xmin+(xmax-xmin)*i/4;s+=`<path d="M62 ${yy(y)}H584" stroke="#e4eadd" stroke-dasharray="3 5"/><text x="51" y="${yy(y)+3}" fill="#839675" font-size="9" text-anchor="end">${fmt(y,Math.abs(hi-lo)<1?3:1)}</text><text x="${xx(x)}" y="193" fill="#839675" font-size="9" text-anchor="middle">${fmt(x,Math.abs(xmax-xmin)>20?0:2)}</text>`;}const path=arr=>arr.map((p,i)=>Number.isFinite(p.y)?`${!i||!Number.isFinite(arr[i-1].y)?'M':'L'}${xx(p.x)} ${yy(p.y)}`:'').join('');if(series2)s+=`<path d="${path(series2)}" fill="none" stroke="#b8a8b2" stroke-width="1.7" stroke-dasharray="5 5"/>`;s+=`<path d="${path(points)}" fill="none" stroke="#8ca87a" stroke-width="2.4"/>`;if(current&&Number.isFinite(current.y))s+=`<circle cx="${xx(current.x)}" cy="${yy(current.y)}" r="5" fill="#6e9259" stroke="#fff" stroke-width="2"/>`;return `<svg viewBox="0 0 620 230" role="img" aria-label="${esc(yLabel+' versus '+xLabel)}">${s}<text x="62" y="15" fill="#758c65" font-size="10">${esc(yLabel)}</text><text x="323" y="218" text-anchor="middle" fill="#758c65" font-size="10">${esc(xLabel)}</text></svg>`;}
+function renderSensitivity(p,r){$('#sensitivity-title').textContent=mode==='droplet'?'Flow-ratio sensitivity':p.type==='bank'?'Supply-pressure sensitivity':'Flow-rate sensitivity';if(!r.valid||(mode==='droplet'&&!r.eligible)){$('#sensitivity-chart').innerHTML='<div class="chart-empty">Return to valid inputs and the model screening range to view sensitivity.</div>';$('#sensitivity-note').textContent='Only valid model points are plotted.';return;}
+if(mode==='droplet'){const q=r.ratio,min=Math.max(.000001/p.qc,q*.3),max=Math.min(10000/p.qc,q*2.1),points=Array.from({length:45},(_,i)=>{const x=min+(max-min)*i/44,rr=calculate({...p,drive:'flow',qd:x*p.qc});return {x,y:rr.valid&&rr.eligible?rr.diameter:NaN};});$('#sensitivity-chart').innerHTML=lineChart(points,{xLabel:'Qd / Qc · Qc fixed',yLabel:'Equivalent diameter (µm)',current:{x:q,y:r.diameter}});$('#sensitivity-note').textContent=p.geometry==='t'?'Hypothetical flow sweep: dispersed flow changes at the resolved Qc; pressure/target controls are not held fixed. Valid expanded-range points are extrapolations.':'Hypothetical flow sweep at resolved Qc, independent of current input mode. Reference-point empirical response; calibrate before use. Geometry and fluid-property size effects are not modeled.';}
+else{const bank=p.type==='bank',xs=Array.from({length:25},(_,i)=>.25+i*2.75/24);xs.push(1);xs.sort((a,b)=>a-b);const points=xs.map(x=>{const q=clone(p);if(bank)q.pressure*=x;else if(p.type==='tree'){q.qa*=x;q.qb*=x;}else q.flows=q.flows.map(v=>v*x);const rr=calculateGradient(q,72);return {x,y:rr.valid?(bank?rr.maxLength:rr.mixing*100):NaN};});$('#sensitivity-chart').innerHTML=lineChart(points,{xLabel:bank?'Supply pressure / current pressure':'Total flow / current flow · inlet ratios fixed',yLabel:bank?'Longest required feed (mm)':'Diffusion score (%)',current:{x:1,y:bank?r.maxLength:r.mixing*100},yMin:0,yMax:bank?null:100});$('#sensitivity-note').textContent=bank?'Flow and targets remain fixed. Feed lengths are re-sized at each pressure; insufficient-pressure points are omitted.':p.type==='tree'?'All inlet flows scale together. Ideal mixed-node concentrations stay unchanged; residence and diffusion screening change.':'All inlet flows scale together at fixed concentrations and geometry. Faster flow leaves less time for diffusion. Sweep resolution: 72 transverse cells.';}}
+function renderProfile(p,r){$('#profile-title').textContent=p.type==='coflow'?'Transverse concentration profile':'Outlet concentration profile';if(!r.valid){$('#profile-chart').innerHTML=$('#outlet-table').innerHTML='';return;}const co=p.type==='coflow',points=co?r.outlet.map((y,i)=>({x:(i+.5)/r.ny*p.chamberWidth,y})):r.outlets.map(o=>({x:o.index,y:o.c})),initial=co?r.initial.map((y,i)=>({x:(i+.5)/r.ny*p.chamberWidth,y})):null,vals=co?p.concentrations:[p.ca,p.cb];$('#profile-chart').innerHTML=lineChart(points,{xLabel:co?'Position across chamber (µm)':'Outlet index',yLabel:'Concentration (mM)',series2:initial,yMin:Math.min(0,...vals),yMax:Math.max(...vals)||1})+(co?'<p class="small muted">Solid: outlet profile · dashed: inlet bands</p>':'');const cols=p.type==='bank'?['Outlet','C (mM)','Q (µL/min)','A feed (mm)','B feed (mm)']:['Bin / outlet','C (mM)','Q (µL/min)'];$('#outlet-table').innerHTML=`<table><thead><tr>${cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>${r.outlets.map(o=>`<tr><td>${o.index}</td><td>${fmt(o.c,4)}</td><td>${fmt(o.flow,3)}</td>${p.type==='bank'?`<td>${o.la===null?'Closed':fmt(o.la)}</td><td>${o.lb===null?'Closed':fmt(o.lb)}</td>`:''}</tr>`).join('')}</tbody></table>`;}
+function compareRows(){return mode==='droplet'?[
+['Architecture','',p=>architectureName(p)],['Operating mode','',p=>driveName(p)],['Target diameter · inverse mode','µm',p=>p.drive==='diameter'?fmt(p.targetDiameter,3):'—'],['Unknown flow · inverse mode','',p=>p.drive==='diameter'?p.solveFor:'—'],['Inlet gauge pressure Pc / Pd · pressure mode','kPa',p=>p.drive==='pressure'?fmt(p.inletPc,4)+' / '+fmt(p.inletPd,4):'—'],['Junction backpressure · pressure mode','kPa',p=>p.drive==='pressure'?fmt(p.junctionP,4):'—'],['Continuous flow','µL/min',p=>fmt(p.qc)],['Dispersed flow','µL/min',p=>fmt(p.qd)],['Qd / Qc','—',(p,r)=>fmt(r.ratio,3)],['Main / summed side width','µm',p=>fmt(p.wc,0)],['Dispersed inlet width','µm',p=>fmt(p.wd,0)],['Channel depth','µm',p=>fmt(p.h,0)],['Continuous / dispersed inlet length','mm',p=>fmt(p.lc)+' / '+fmt(p.ld)],['Viscosity · continuous / dispersed','mPa·s',p=>fmt(p.muc)+' / '+fmt(p.mud)],['Density · continuous / dispersed','kg/m³',p=>fmt(p.rhoc,0)+' / '+fmt(p.rhod,0)],['Interfacial tension','mN/m',p=>fmt(p.sigma)],['Geometry coefficient α','—',p=>fmt(p.alpha)],['Axial length','µm',(p,r)=>fmt(r.length,1)],['Equivalent diameter','µm',(p,r)=>fmt(r.diameter,1)],['Drop volume','nL',(p,r)=>fmt(r.volume,3)],['Frequency','Hz',(p,r)=>fmt(r.frequency,1)],['Capillary number','—',(p,r)=>fmt(r.ca,5)],['Inlet Re · c / d','—',(p,r)=>fmt(r.rec,3)+' / '+fmt(r.red,3)],['Inlet ΔP · c / d','kPa',(p,r)=>fmt(r.pc,3)+' / '+fmt(r.pd,3)],['Reference d / q / b · FF','µm / — / —',p=>p.geometry==='ff'?`${fmt(p.ffDref,1)} / ${fmt(p.ffRatioRef,3)} / ${fmt(p.ffExponent,3)}`:'—'],['Reference total Qc · FF','µL/min',p=>p.geometry==='ff'?fmt(p.ffQcRef):'—'],['Screening / calibration','',(p,r)=>!r.eligible?'Size suppressed':p.geometry==='ff'?'Empirical · calibrate':r.extended?'Expanded · extrapolated':'Original screen · validate']]:[
+['Architecture','',p=>architectureName(p)],['Total flow','µL/min',(p,r)=>fmt(r.total)],['Outlets / sampling bins','—',p=>fmt(p.n,0)],['Channel depth','µm',p=>fmt(p.h,0)],['Channel / chamber width','µm',p=>fmt(p.type==='coflow'?p.chamberWidth:p.w,0)],['Diffusion coefficient','µm²/s',p=>fmt(p.diffusion,1)],['Dynamic viscosity','mPa·s',p=>fmt(p.mu)],['Fluid density','kg/m³',p=>fmt(p.rho,0)],['Flow-weighted mean','mM',(p,r)=>fmt(r.mean,4)],['Output concentration levels','mM',(p,r)=>r.outlets.map(o=>fmt(o.c,3)).join(' / ')],['Residence indicator¹','s',(p,r)=>fmt(r.residence)],['Mixing / screening score¹','%',(p,r)=>fmt(r.mixing*100,1)],['Pressure indicator¹','kPa',(p,r)=>fmt(r.pressure,4)],['Reynolds number','—',(p,r)=>fmt(r.re,3)],['Longest required feed · bank','mm',(p,r)=>fmt(r.maxLength)],['Ideal target RMSE · bank','mM',(p,r)=>fmt(r.rmse,6)],['Routing limit · bank','',(p,r)=>p.type==='bank'?(r.feasible?'Within limit':'Exceeded'):'—']];}
+function comparisonColumns(){return [{name:'Current design',params:active(),mode},...selections[mode].map(id=>records.find(r=>r.id===id&&r.mode===mode)).filter(Boolean)];}
+function renderComparison(){const cols=comparisonColumns();$('#comparison-table').innerHTML=`<table><thead><tr><th>Parameter / result</th><th>Unit</th>${cols.map((c,i)=>`<th class="${i?'':'current-col'}" ${i&&!c.sample?'data-user-content':''}>${esc(c.name)}</th>`).join('')}</tr></thead><tbody>${compareRows().map(([l,u,get])=>`<tr><td>${l}</td><td>${u}</td>${cols.map((c,i)=>{const r=compute(c.params);return `<td class="${i?'':'current-col'}">${esc(r.valid?get(r.params||c.params,r):'Invalid inputs')}</td>`;}).join('')}</tr>`).join('')}</tbody></table>${mode==='gradient'?'<p class="small muted" style="margin-top:12px">¹ Tree: active-network residence, first-mode screening and largest inlet pressure. Co-flow: chamber residence, variance-based mixing and chamber pressure drop. Bank: mixer residence, first-mode screening and supply pressure. These indicators have architecture-specific meanings.</p>':''}`;}
+function renderCandidates(){$$('[data-candidate-mode]').forEach(b=>b.classList.toggle('active',b.dataset.candidateMode===candidateMode));const list=records.filter(r=>r.mode===candidateMode);$('#candidate-list').innerHTML=list.length?list.map(c=>{const r=compute(c.params,c.mode),meta=c.mode==='droplet'?`${architectureName(c.params)} · ${driveName(c.params)} · Qc/Qd ${fmt(r.qc)}/${fmt(r.qd)} µL/min · ${r.eligible?fmt(r.diameter,1)+' µm equivalent diameter':'size screening failed'}`:`${architectureName(c.params)} · ${c.params.n} outputs · ${fmt(r.total)} µL/min · mean ${fmt(r.mean,3)} mM`;return `<article class="candidate-card"><input type="checkbox" data-select="${esc(c.id)}" ${selections[c.mode].includes(c.id)?'checked':''} aria-label="Compare ${esc(c.name)}"><div><h3 ${c.sample?'':'data-user-content'}>${esc(c.name)}</h3><div class="candidate-meta">${esc(meta)} ${c.sample?'· example':''}</div><p ${c.sample?'':'data-user-content'}>${esc(c.note)}</p></div><div class="candidate-actions"><button data-load="${esc(c.id)}">Load design ↗</button><button data-edit="${esc(c.id)}">Edit record</button><button class="delete" data-delete="${esc(c.id)}">Remove</button></div></article>`;}).join(''):'<p class="small muted" style="padding:25px 0">No candidates yet. Save a design or restore examples.</p>';}
+function changeMode(m){mode=m;renderForm();renderResults();persist();}
+function openLibrary(){candidateMode=mode;renderCandidates();$('#candidate-dialog').showModal();}
+function loadCandidate(id){const c=records.find(r=>r.id===id);if(!c)return;designs[c.mode]=clone(c.params);mode=c.mode;renderForm();renderResults();persist();}
+function openSave(id=null){editingId=id;const c=records.find(r=>r.id===id);if(c){loadCandidate(id);$('#candidate-dialog').close();}if(!compute(active()).valid)return notify('Correct the inputs before saving.');$('#candidate-name').value=c?.name||translateText(architectureName(active())+' design');$('#candidate-note').value=c?.note||'';$('#save-dialog').showModal();$('#candidate-name').focus();}
+function download(name,type,content){const blob=new Blob([content],{type}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),15000);}
+const stamp=()=>new Date().toISOString().slice(0,10),csvCell=s=>{let v=String(s??'');if(/^[=+\-@\t\r]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"';},makeCsv=rows=>'\ufeff'+rows.map(row=>row.map(csvCell).join(',')).join('\r\n');
+const snapshot=()=>({schema:2,version:'2.2',mode,designs:{droplet:cleanDrop(designs.droplet)||clone(defaults),gradient:cleanGrad(designs.gradient)||clone(gradientDefaults)},records,selections,exported:new Date().toISOString()});
+$('#parameter-form').addEventListener('input',e=>{const previous=mode==='droplet'&&e.target.name==='solveFor'?compute(active()):null;readForm();if(previous?.valid){active().qc=previous.qc;active().qd=previous.qd;}if(['profile','solveFor'].includes(e.target.name))renderForm();renderResults();persist();});
+$('#parameter-form').addEventListener('click',e=>{const b=e.target.closest('[data-drive]');if(b)changeDrive(b.dataset.drive);});
+$('#architecture-picker').addEventListener('click',e=>{const b=e.target.closest('[data-architecture]');if(!b)return;const v=b.dataset.architecture;if(mode==='droplet'){active().geometry=v;if(v==='ff'&&active().wc===defaults.wc)Object.assign(active(),{wc:200,wd:60,...(active().drive==='flow'?{qd:1}:{})});}else if(active().type!==v)designs.gradient=clone(GRADIENT_PRESETS.find(r=>r.params.type===v)?.params||{...gradientDefaults,type:v});renderForm();renderResults();persist();});
+$$('[data-mode]').forEach(b=>b.onclick=()=>changeMode(b.dataset.mode));
+$('#reset-design').onclick=()=>{const p=active();designs[mode]=mode==='droplet'?clone(p.geometry==='ff'?PRESETS[4].params:defaults):clone(GRADIENT_PRESETS.find(r=>r.params.type===p.type)?.params||gradientDefaults);renderForm();renderResults();persist();notify('Current inputs reset. Saved candidates are unchanged.');};
+$('#open-candidates').onclick=$('#choose-candidates').onclick=openLibrary;$('#open-methods').onclick=$('#footer-methods').onclick=()=>$('#methods-dialog').showModal();$('#save-candidate').onclick=()=>openSave();$$('[data-close]').forEach(b=>b.onclick=()=>b.closest('dialog').close());
+$('#save-form').addEventListener('submit',e=>{e.preventDefault();const name=$('#candidate-name').value.trim();if(!name)return;if(!compute(active()).valid)return notify('Correct the inputs before saving.');if(records.length>=80&&!editingId)return notify('The workspace holds 80 candidates. Remove a record or export a backup.');const c={id:editingId||uid(),mode,name,note:$('#candidate-note').value.trim(),params:mode==='droplet'?cleanDrop(active()):clone(active()),sample:false,created:new Date().toISOString()},i=records.findIndex(r=>r.id===editingId);if(i>=0)records[i]=c;else records.push(c);if(selections[mode].length<4&&!selections[mode].includes(c.id))selections[mode].push(c.id);persist();renderComparison();$('#save-dialog').close();notify(i>=0?'Candidate updated.':'Candidate saved.');});
+$$('[data-candidate-mode]').forEach(b=>b.onclick=()=>{candidateMode=b.dataset.candidateMode;renderCandidates();});
+$('#candidate-list').addEventListener('change',e=>{const id=e.target.dataset.select,c=records.find(r=>r.id===id);if(!c)return;if(e.target.checked){if(selections[c.mode].length>=4){e.target.checked=false;return notify('Select up to four candidates per module.');}selections[c.mode].push(id);}else selections[c.mode]=selections[c.mode].filter(v=>v!==id);persist();renderComparison();});
+$('#candidate-list').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.load){loadCandidate(b.dataset.load);$('#candidate-dialog').close();notify('Candidate loaded into current inputs.');}if(b.dataset.edit)openSave(b.dataset.edit);if(b.dataset.delete){const id=b.dataset.delete,c=records.find(r=>r.id===id);records=records.filter(r=>r.id!==id);if(c)selections[c.mode]=selections[c.mode].filter(v=>v!==id);persist();renderCandidates();renderComparison();notify('Candidate removed. Use workspace backups to preserve portable records.');}});
+$('#restore-examples').onclick=()=>{const n=seed();persist();renderCandidates();renderComparison();notify(`${n} example designs restored.`);};
+$('#export-backup').onclick=()=>download(`DropLab_workspace_${stamp()}.json`,'application/json',JSON.stringify(snapshot(),null,2));
+$('#export-summary').onclick=()=>{const p=active(),r=compute(p);if(!r.valid)return;const units=mode==='droplet'?'Flow µL/min; widths and depth µm; lengths mm; viscosity mPa·s; density kg/m³; interfacial tension mN/m; inlet and junction gauge pressures kPa; target equivalent diameter µm.':'Flow µL/min; concentration mM (= mol/m³); widths and depth µm; lengths mm; diffusion µm²/s; viscosity mPa·s; density kg/m³; pressure kPa; contact angle degrees; surface tension mN/m.';download(`DropLab_${mode}_summary_${stamp()}.txt`,'text/plain;charset=utf-8',`DropLab 2.2 — ${translateText(architectureName(p))}\n${new Date().toISOString()}\n\n${translateText(summary(p,r))}\n\n${translateText('ASSUMPTIONS')}\n${r.warnings.map(w=>translateText(w)).join('\n')}\n\n${translateText('UNITS')}\n${translateText(units)}\n\nALL PARAMETERS (Qc/Qd are resolved outputs in inverse/pressure modes)\n${JSON.stringify(r.params||p,null,2)}\n\nREFERENCES\nKhalghollah et al. 2026: https://doi.org/10.1002/smll.73821\nZhang et al. 2022: https://doi.org/10.3390/mi13111810\nGarstecki et al. 2006: https://doi.org/10.1039/B510841A\nNo trained ANN weights are used. See Models & references for equations and scope.\n`);};
+$('#export-diagram').onclick=()=>{const svg=$('#schematic svg')?.cloneNode(true);if(!svg)return;svg.setAttribute('xmlns','http://www.w3.org/2000/svg');download(`DropLab_${mode}_schematic_${stamp()}.svg`,'image/svg+xml;charset=utf-8',new XMLSerializer().serializeToString(svg));};
+$('#export-csv').onclick=()=>{const cols=comparisonColumns();download(`DropLab_${mode}_comparison_${stamp()}.csv`,'text/csv;charset=utf-8',makeCsv([[translateText('Parameter / result'),translateText('Unit'),...cols.map((c,i)=>i&&!c.sample?c.name:translateText(c.name))],...compareRows().map(([l,u,get])=>[translateText(l),u,...cols.map(c=>{const r=compute(c.params);return translateText(r.valid?get(r.params||c.params,r):'Invalid inputs');})]),['Model note','',...cols.map(c=>c.mode==='droplet'?'Screening or illustrative empirical estimate; calibrate':'Architecture-specific indicators; see Models & references')]]));};
+$('#export-outlets').onclick=()=>{const p=active(),r=compute(p);if(mode!=='gradient'||!r.valid)return;download(`DropLab_gradient_outputs_${stamp()}.csv`,'text/csv;charset=utf-8',makeCsv([['Index','Concentration_mM','Flow_uL_min',...(p.type==='bank'?['Target_mM','Stock_flow_uL_min','Diluent_flow_uL_min','A_length_mm','B_length_mm']:[])],...r.outlets.map(o=>[o.index,o.c,o.flow,...(p.type==='bank'?[o.target,o.qa,o.qb,o.la??'Closed',o.lb??'Closed']:[])])]));};
+$('#import-backup').onclick=()=>$('#import-file').click();$('#import-file').addEventListener('change',async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;try{if(f.size>2*1024*1024)throw Error('Backups must be smaller than 2 MB.');const d=JSON.parse(await f.text());if(![1,2].includes(d.schema)||!Array.isArray(d.records)||d.records.length>80)throw Error('Use a valid DropLab v1 or v2 JSON workspace backup.');const next=d.schema===1?{droplet:cleanDrop(d.params),gradient:clone(designs.gradient)}:{droplet:cleanDrop(d.designs?.droplet),gradient:cleanGrad(d.designs?.gradient)};if(!next.droplet||!next.gradient)throw Error('Current design parameters in the backup are invalid.');const incoming=d.records.map(cleanCandidate);if(incoming.some(r=>!r)||new Set(incoming.map(r=>r.id)).size!==incoming.length)throw Error('The backup has invalid or duplicate candidate records.');const fresh=incoming.filter(r=>!records.some(c=>c.id===r.id));if(records.length+fresh.length>80)throw Error('The merged workspace exceeds 80 records. Remove candidates first.');const sels=d.schema===1?{droplet:d.selected}:d.selections;if(sels&&typeof sels!=='object')throw Error('Invalid candidate selections.');for(const m of ['droplet','gradient'])if(sels?.[m]!==undefined&&!Array.isArray(sels[m]))throw Error('Invalid candidate selections.');records=[...records,...fresh];designs=next;mode=d.schema===2&&d.mode==='gradient'?'gradient':'droplet';for(const m of ['droplet','gradient'])for(const id of sels?.[m]||[])if(selections[m].length<4&&!selections[m].includes(id)&&records.some(r=>r.id===id&&r.mode===m))selections[m].push(id);renderForm();renderResults();persist();notify(`${fresh.length} candidates merged; current inputs restored.`);}catch(err){notify(err instanceof SyntaxError?'This file is not valid JSON.':err.message||'Import failed.');}});
+initialize();renderForm();renderResults();persist();initLanguage();
+
+</script></body></html>

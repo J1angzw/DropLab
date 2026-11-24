@@ -1,0 +1,1 @@
+Open DropLab.html directly in a browser. Use 中文 / English in the left navigation. For a local server, run python3 start.py and use the printed address. Export workspace JSON to preserve browser-specific records. See README.md and USER_GUIDE.md.

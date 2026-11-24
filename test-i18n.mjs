@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {translateText} from './dist/i18n.mjs';
+assert.equal(translateText('Droplet generator','en'),'Droplet generator');
+assert.equal(translateText('Droplet generator','zh'),'液滴产生器');
+assert.equal(translateText('Total flow','zh'),'总流量');
+assert.equal(translateText('Equivalent diameter 108.4 µm','zh'),'等体积球直径 108.4 µm');
+assert.equal(translateText('Pc = 2γ cosθ (1/w + 1/h)','zh'),'Pc = 2γ cosθ (1/w + 1/h)');
+assert.match(translateText('2 candidates merged; current inputs restored.','zh'),/2 个候选/);
+assert.match(translateText('Inlet 6 concentration','zh'),/入口 6 浓度/);
+assert.equal(translateText('Concentration gradient generator','zh'),'浓度梯度产生器');
+console.log('PASS: English identity, both modules, dynamic messages and numeric/formula preservation.');
